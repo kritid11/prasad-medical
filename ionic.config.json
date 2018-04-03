@@ -1,0 +1,8 @@
+{
+  "name": "prasadMedical",
+  "app_id": "1be08394",
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {}
+  }
+}
