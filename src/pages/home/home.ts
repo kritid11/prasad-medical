@@ -15,7 +15,7 @@ export class HomePage {
 	  constructor(public navCtrl: NavController) {
 
 	  	let TIME_IN_MS = 2000;
-		let hideFooterTimeout = setTimeout( () => {
+		setTimeout( () => {
 		     // somecode
 		     this.afterSplash=true;
 		}, TIME_IN_MS);
