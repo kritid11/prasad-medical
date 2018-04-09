@@ -5,10 +5,10 @@ import { LoginPage } from '../login/login';
 import { RegisterPage } from '../register/register';
 
 @Component({
-  selector: 'page-home',
-  templateUrl: 'home.html'
+  selector: 'page-new-request',
+  templateUrl: 'new-request.html'
 })
-export class HomePage {
+export class NewRequestPage {
 
 	  afterSplash: boolean = false;
     logo: any;

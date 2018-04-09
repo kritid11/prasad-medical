@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>AD_UNIT_ID_FOR_BANNER_TEST</key>
+	<string>ca-app-pub-3940256099942544/2934735716</string>
+	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
+	<string>ca-app-pub-3940256099942544/4411468910</string>
+	<key>CLIENT_ID</key>
+	<string>237370195633-sbga5pktq0b3vm7q3jddlu4t7k3qqafl.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.237370195633-sbga5pktq0b3vm7q3jddlu4t7k3qqafl</string>
+	<key>API_KEY</key>
+	<string>AIzaSyCF4-SIgSWYVSyoV7rzs6eh2ChZclEjJfk</string>
+	<key>GCM_SENDER_ID</key>
+	<string>237370195633</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.worldPlanet.prasadMedical</string>
+	<key>PROJECT_ID</key>
+	<string>prasad-medical-200413</string>
+	<key>STORAGE_BUCKET</key>
+	<string>prasad-medical-200413.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<true></true>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<false></false>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:237370195633:ios:522437bea0c3cde8</string>
+	<key>DATABASE_URL</key>
+	<string>https://prasad-medical-200413.firebaseio.com</string>
+</dict>
+</plist>

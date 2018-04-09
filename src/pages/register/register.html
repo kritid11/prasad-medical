@@ -1,0 +1,133 @@
+<ion-header>
+  <ion-navbar>
+    <div class="header center-items rt-margin-20">
+      <img class="circle-pic top-margin-10"
+        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJAhFDqzmYWuS10TZEOm_QcPz0X9GQOweXHMHwdHYf-OW2MZmc">
+      <div class="header-font">PRASAD MEDICAL</div>
+      <div class="desc-font">And General stores, Pratap Nagar, Nagpur</div>
+    </div>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <div>
+    <form [formGroup]="signupForm" (submit)="registerUser()" novalidate>
+       <ion-grid>
+          <ion-row>
+              <ion-col>
+                <ion-item [class.invalid]="!signupForm.controls.firstName.valid && signupForm.controls.firstName.touched"
+                          [class.valid]="signupForm.controls.firstName.valid && signupForm.controls.firstName.touched">
+                  <ion-label floating> First name </ion-label>
+                  <button style="margin-top: 10%" ion-button clear color="white" type="button" item-left>
+                     <ion-icon name="person"></ion-icon>
+                   </button>
+                  <ion-input
+                    formControlName="firstName"
+                    type="text"> </ion-input>
+                </ion-item>
+                <ion-item class="error-message" *ngIf="!signupForm.controls.firstName.valid &&
+                   signupForm.controls.firstName.touched">
+                  <p>Please enter a valid First name</p>
+                </ion-item>
+                <!-- <ion-item class="error-message" *ngIf="!signupForm.controls.firstName.minLength &&
+                   signupForm.controls.firstName.touched">
+                  <p>First name cannot be less than 3 characters</p>
+                </ion-item> -->
+              </ion-col>
+              <ion-col>
+                <ion-item [class.invalid]="!signupForm.controls.lastName.valid && signupForm.controls.lastName.touched"
+                          [class.valid]="signupForm.controls.lastName.valid && signupForm.controls.lastName.touched">
+                  <ion-label floating> Last name </ion-label>
+                  <button style="margin-top: 10%" ion-button clear color="white" type="button" item-left>
+                     <ion-icon name="person"></ion-icon>
+                   </button>
+                  <ion-input
+                    formControlName="lastName"
+                    type="text"> </ion-input>
+                </ion-item>
+                <ion-item class="error-message" *ngIf="!signupForm.controls.lastName.valid &&
+                   signupForm.controls.lastName.touched">
+                  <p>Please enter a valid Last name</p>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+        </ion-grid>
+
+        <ion-item [class.invalid]="!signupForm.controls.email.valid && signupForm.controls.email.touched"
+                  [class.valid]="signupForm.controls.email.valid && signupForm.controls.email.touched">
+          <ion-label floating> Email Id </ion-label>
+          <button style="margin-top: 10%" ion-button clear color="white" type="button" item-left>
+             <ion-icon name="mail"></ion-icon>
+           </button>
+          <ion-input formControlName="email" type="email"> </ion-input>
+        </ion-item>
+        <ion-item class="error-message" *ngIf="!signupForm.controls.email.valid &&
+           signupForm.controls.email.touched">
+          <p>Please enter a valid email address.</p>
+        </ion-item>
+
+        <ion-item [class.invalid]="!signupForm.controls.mobile.valid && signupForm.controls.mobile.touched"
+                  [class.valid]="signupForm.controls.mobile.valid && signupForm.controls.mobile.touched">
+          <ion-label floating> Mobile </ion-label>
+          <button style="margin-top: 10%" ion-button clear color="white" type="button" item-left>
+             <ion-icon name="phone-portrait"></ion-icon>
+           </button>
+          <ion-input
+            formControlName="mobile"
+            type="number"> </ion-input>
+        </ion-item>
+        <ion-item class="error-message" *ngIf="!signupForm.controls.mobile.valid &&
+           signupForm.controls.mobile.touched">
+          <p>Please enter a valid Mobile number</p>
+        </ion-item>
+
+        <ion-item [class.invalid]="!signupForm.controls.password.valid && signupForm.controls.password.touched"
+                  [class.valid]="signupForm.controls.password.valid && signupForm.controls.password.touched">
+          <ion-label floating> Password </ion-label>
+          <button style="margin-top: 10%" ion-button clear color="white" type="button" item-left>
+             <ion-icon name="lock"></ion-icon>
+           </button>
+          <ion-input
+            formControlName="password"
+            type="password"> </ion-input>
+        </ion-item>
+        <ion-item class="error-message" *ngIf="!signupForm.controls.password.valid &&
+           signupForm.controls.password.touched">
+          <p>Please enter Password. Password has to be of minimum 6 characters</p>
+        </ion-item>
+
+        <ion-item [class.invalid]="!signupForm.controls.confirmPassword.valid && signupForm.controls.confirmPassword.touched"
+                  [class.valid]="signupForm.controls.confirmPassword.valid && signupForm.controls.confirmPassword.touched">
+          <ion-label floating> Confirm Password </ion-label>
+          <button style="margin-top: 10%" ion-button clear color="white" type="button" item-left>
+             <ion-icon name="lock"></ion-icon>
+           </button>
+          <ion-input
+            formControlName="confirmPassword"
+            type="password"> </ion-input>
+        </ion-item>
+        <ion-item class="error-message" *ngIf="!signupForm.controls.confirmPassword.valid &&
+           signupForm.controls.confirmPassword.touched">
+          <p>Passowrd and confirm Password do not match</p>
+        </ion-item>
+
+        <div class="center-items">
+          <button ion-button secondary class="btn-blue" type="submit"
+          [disabled]="!signupForm.controls.firstName.valid || !signupForm.controls.lastName.valid || !signupForm.controls.email.valid || !signupForm.controls.mobile.valid || !signupForm.controls.password.valid || !signupForm.controls.confirmPassword.valid ">Register</button>
+
+        </div>
+      </form>
+  </div>
+
+
+  <div class="center-items">
+    <div>
+      <button ion-button secondary class="fb-btn" (click)="fbLogin()">Log in with Facebook</button>
+    </div>
+    <div>
+      <button ion-button secondary  class="google-btn" (click)="googleLogin()">Sign in with Google</button>
+    </div>
+
+  </div>
+
+</ion-content>

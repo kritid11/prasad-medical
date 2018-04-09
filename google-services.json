@@ -1,0 +1,62 @@
+{
+  "project_info": {
+    "project_number": "237370195633",
+    "firebase_url": "https://prasad-medical-200413.firebaseio.com",
+    "project_id": "prasad-medical-200413",
+    "storage_bucket": "prasad-medical-200413.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:237370195633:android:522437bea0c3cde8",
+        "android_client_info": {
+          "package_name": "com.worldPlanet.prasadMedical"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "237370195633-is5v6489q8pjrmt2tdbgb30eh5phnobd.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.worldPlanet.prasadMedical",
+            "certificate_hash": "9a050686de489e2e3d821e5c0d7c72693268e668"
+          }
+        },
+        {
+          "client_id": "237370195633-qbgb15md3oh4a45qhiueopq37pliabnn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAt9c7E-Yv312GFTHInppHYY9KC0GkvQ88"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "237370195633-qbgb15md3oh4a45qhiueopq37pliabnn.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "237370195633-sbga5pktq0b3vm7q3jddlu4t7k3qqafl.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.worldPlanet.prasadMedical"
+              }
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

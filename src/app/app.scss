@@ -14,3 +14,33 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+.invalid {
+  .item-inner {
+    border: 0;
+  }
+  ion-input {
+    border-bottom: 1px solid #ff6153;
+  }
+}
+
+.valid {
+  .item-inner {
+    border: 0;
+  }
+  ion-input {
+    border-bottom: 1px solid #1eff00;
+  }
+}
+
+.error-message {
+  min-height: 2.2rem;
+  p {
+    font-size: 60%;
+  }
+  ion-label {
+    margin: 2px 0;
+  }
+  .item-inner {
+    border-bottom: 0 !important;
+  }
+}

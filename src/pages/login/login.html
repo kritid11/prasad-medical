@@ -1,0 +1,63 @@
+<ion-header>
+  <ion-navbar>
+    <div class="header center-items rt-margin-20">
+      <img class="circle-pic top-margin-10"
+        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJAhFDqzmYWuS10TZEOm_QcPz0X9GQOweXHMHwdHYf-OW2MZmc">
+      <div class="header-font">PRASAD MEDICAL</div>
+      <div class="desc-font">And General stores, Pratap Nagar, Nagpur</div>
+    </div>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <div>
+      <form [formGroup]="signinForm" (submit)="doLogin()" novalidate>
+      <ion-item [class.invalid]="!signinForm.controls.emailOrMobile.valid && signinForm.controls.emailOrMobile.touched"
+                [class.valid]="signinForm.controls.emailOrMobile.valid && signinForm.controls.emailOrMobile.touched">
+        <ion-label floating> Email Id / Mobile No. </ion-label>
+        <button style="margin-top: 10%" ion-button clear color="white" type="button" item-left>
+           <ion-icon name="mail"></ion-icon>
+         </button>
+        <ion-input formControlName = "emailOrMobile"
+          type="text"> </ion-input>
+      </ion-item>
+      <ion-item class="error-message" *ngIf="!signinForm.controls.emailOrMobile.valid &&
+         signinForm.controls.emailOrMobile.touched">
+        <p>Please enter a valid Email Id/Mobile</p>
+      </ion-item>
+
+      <ion-item [class.invalid]="!signinForm.controls.password.valid && signinForm.controls.password.touched"
+                [class.valid]="signinForm.controls.password.valid && signinForm.controls.password.touched">
+        <ion-label floating> Password </ion-label>
+        <button style="margin-top: 10%" ion-button clear color="white" type="button" item-left>
+           <ion-icon name="lock"></ion-icon>
+         </button>
+        <ion-input formControlName = "password"
+          type="password"> </ion-input>
+      </ion-item>
+      <ion-item class="error-message" *ngIf="!signinForm.controls.password.valid &&
+         signinForm.controls.password.touched">
+        <p>Please enter Password</p>
+      </ion-item>
+
+      <div class="center-items">
+        <button ion-button secondary class="btn-blue"
+        [disabled]="!signinForm.controls.emailOrMobile.valid || !signinForm.controls.password.valid">Login</button>
+      </div>
+    </form>
+  </div>
+
+  <div class="center-items">
+
+    <div>
+      <button ion-button secondary class="fb-btn" (click)="fbLogin()">Log in with Facebook</button>
+    </div>
+    <div>
+      <button ion-button secondary  class="google-btn" (click)="googleLogin()">Sign in with Google</button>
+    </div>
+    <div>
+      <ion-label class="link-style" (click)="goToForgotPassword()">Forgot Password?</ion-label>
+    </div>
+  </div>
+
+</ion-content>

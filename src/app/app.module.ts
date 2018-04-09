@@ -4,21 +4,25 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
-import { ListPage } from '../pages/list/list';
+import { RegisterPage } from '../pages/register/register';
 import { LoginPage } from '../pages/login/login';
-import { NewRequestPage } from '../pages/new_request/new_request';
+import { ForgotPasswordPage } from '../pages/forgot-password/forgot-password';
+import { NewRequestPage } from '../pages/new-request/new-request';
 
 import { StatusBar } from '@ionic-native/status-bar';
-import { SplashScreen } from '@ionic-native/splash-screen';
+//import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { Facebook } from '@ionic-native/facebook';
+import { GooglePlus } from '@ionic-native/google-plus';
+
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
-    ListPage,
+    RegisterPage,
     LoginPage,
+    ForgotPasswordPage,
     NewRequestPage
   ],
   imports: [
@@ -29,15 +33,16 @@ import { Facebook } from '@ionic-native/facebook';
   entryComponents: [
     MyApp,
     HomePage,
-    ListPage,
+    RegisterPage,
     LoginPage,
+    ForgotPasswordPage,
     NewRequestPage
   ],
   providers: [
     StatusBar,
-    SplashScreen,
+    //SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    [Facebook]
+    [Facebook, GooglePlus]
   ]
 })
 export class AppModule {}
