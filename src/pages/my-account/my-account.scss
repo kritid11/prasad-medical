@@ -1,7 +1,7 @@
-page-forgot-password {
+page-my-account {
   .btn-blue{
     color: white !important;
-    width: 85% !important;
+    width: 92% !important;
     height: 55px;
     font-size: 1.1em;
     margin-top: 5%;
@@ -11,24 +11,6 @@ page-forgot-password {
     text-align: center;
   }
 
-  .fb-btn{
-    //background-image: url("icon.png");
-    background: darkblue;
-    width: 85% !important;
-    height: 55px;
-    font-size: 1.1em;
-    margin-top: 5%;
-  }
-
-  .google-btn{
-    background: white;
-    color: black;
-    width: 85% !important;
-    height: 55px;
-    font-size: 1.1em;
-    box-shadow: 1px 1px 1px 1px #c8c7cc;
-    margin-top: 3%;
-  }
 
   .link-style{
     font-size: 1.1em;
@@ -55,7 +37,7 @@ page-forgot-password {
  }
 
  .desc-font{
-   font-size: 0.6em !important;
+   font-size: 0.7em !important;
    color: white !important;
    padding-bottom: 10%;
  }
@@ -94,11 +76,64 @@ page-forgot-password {
     margin-right: 20%;
   }
 
+  .grid {
+      padding: 0 !important;
+      margin-left: auto;
+      margin-right: auto;
+      width: 100%;
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+      -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+      flex-direction: column;
+  }
+
+  .col {
+      padding: 0 !important;
+      position: relative;
+      width: 100%;
+      margin: 0;
+      min-height: 1px;
+      -webkit-flex-basis: 0;
+      -ms-flex-preferred-size: 0;
+      flex-basis: 0;
+      -webkit-box-flex: 1;
+      -webkit-flex-grow: 1;
+      -ms-flex-positive: 1;
+      flex-grow: 1;
+      max-width: 100%;
+  }
+
   .top-margin-14{
     margin-top: 14% !important;
+  }
+
+  .top-margin-28{
+    margin-top: 28% !important;
   }
 
   .input-width{
     width: 92%;
   }
+
+  .half-input{
+    padding: 0;
+    width: 85%;
+  }
+
+  .input-label{
+    font-size: 0.8em;
+  }
+
+  .error-message p {
+    font-size: 60%;
+    margin-left: 0px;
+    color: crimson;
+    white-space: pre-wrap;
+  }
+
 }

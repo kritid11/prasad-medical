@@ -2,7 +2,7 @@
   <ion-navbar>
     <div class="header center-items rt-margin-20">
       <img class="circle-pic top-margin-10"
-        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJAhFDqzmYWuS10TZEOm_QcPz0X9GQOweXHMHwdHYf-OW2MZmc">
+        src="assets/imgs/logo.png">
       <div class="header-font">PRASAD MEDICAL</div>
       <div class="desc-font">And General stores, Pratap Nagar, Nagpur</div>
     </div>
@@ -16,9 +16,10 @@
           <ion-row>
               <ion-col>
                 <ion-item [class.invalid]="!signupForm.controls.firstName.valid && signupForm.controls.firstName.touched"
-                          [class.valid]="signupForm.controls.firstName.valid && signupForm.controls.firstName.touched">
-                  <ion-label floating> First name </ion-label>
-                  <button style="margin-top: 10%" ion-button clear color="white" type="button" item-left>
+                          [class.valid]="signupForm.controls.firstName.valid && signupForm.controls.firstName.touched"
+                          class="input-width">
+                  <ion-label floating class="input-label"> First name </ion-label>
+                  <button class="top-margin-28" ion-button clear color="white" type="button" item-left>
                      <ion-icon name="person"></ion-icon>
                    </button>
                   <ion-input
@@ -29,23 +30,21 @@
                    signupForm.controls.firstName.touched">
                   <p>Please enter a valid First name</p>
                 </ion-item>
-                <!-- <ion-item class="error-message" *ngIf="!signupForm.controls.firstName.minLength &&
-                   signupForm.controls.firstName.touched">
-                  <p>First name cannot be less than 3 characters</p>
-                </ion-item> -->
               </ion-col>
+
               <ion-col>
                 <ion-item [class.invalid]="!signupForm.controls.lastName.valid && signupForm.controls.lastName.touched"
-                          [class.valid]="signupForm.controls.lastName.valid && signupForm.controls.lastName.touched">
-                  <ion-label floating> Last name </ion-label>
-                  <button style="margin-top: 10%" ion-button clear color="white" type="button" item-left>
+                          [class.valid]="signupForm.controls.lastName.valid && signupForm.controls.lastName.touched"
+                            class="half-input">
+                  <ion-label floating  class="input-label"> Last name </ion-label>
+                  <button class="top-margin-28" ion-button clear color="white" type="button" item-left>
                      <ion-icon name="person"></ion-icon>
                    </button>
                   <ion-input
                     formControlName="lastName"
                     type="text"> </ion-input>
                 </ion-item>
-                <ion-item class="error-message" *ngIf="!signupForm.controls.lastName.valid &&
+                <ion-item class="half-input-error-message" *ngIf="!signupForm.controls.lastName.valid &&
                    signupForm.controls.lastName.touched">
                   <p>Please enter a valid Last name</p>
                 </ion-item>
@@ -54,9 +53,10 @@
         </ion-grid>
 
         <ion-item [class.invalid]="!signupForm.controls.email.valid && signupForm.controls.email.touched"
-                  [class.valid]="signupForm.controls.email.valid && signupForm.controls.email.touched">
-          <ion-label floating> Email Id </ion-label>
-          <button style="margin-top: 10%" ion-button clear color="white" type="button" item-left>
+                  [class.valid]="signupForm.controls.email.valid && signupForm.controls.email.touched"
+                    class="input-width">
+          <ion-label floating  class="input-label"> Email Id </ion-label>
+          <button class="top-margin-14" ion-button clear color="white" type="button" item-left>
              <ion-icon name="mail"></ion-icon>
            </button>
           <ion-input formControlName="email" type="email"> </ion-input>
@@ -67,9 +67,10 @@
         </ion-item>
 
         <ion-item [class.invalid]="!signupForm.controls.mobile.valid && signupForm.controls.mobile.touched"
-                  [class.valid]="signupForm.controls.mobile.valid && signupForm.controls.mobile.touched">
-          <ion-label floating> Mobile </ion-label>
-          <button style="margin-top: 10%" ion-button clear color="white" type="button" item-left>
+                  [class.valid]="signupForm.controls.mobile.valid && signupForm.controls.mobile.touched"
+                    class="input-width">
+          <ion-label floating  class="input-label"> Mobile </ion-label>
+          <button class="top-margin-14" ion-button clear color="white" type="button" item-left>
              <ion-icon name="phone-portrait"></ion-icon>
            </button>
           <ion-input
@@ -82,9 +83,10 @@
         </ion-item>
 
         <ion-item [class.invalid]="!signupForm.controls.password.valid && signupForm.controls.password.touched"
-                  [class.valid]="signupForm.controls.password.valid && signupForm.controls.password.touched">
-          <ion-label floating> Password </ion-label>
-          <button style="margin-top: 10%" ion-button clear color="white" type="button" item-left>
+                  [class.valid]="signupForm.controls.password.valid && signupForm.controls.password.touched"
+                    class="input-width">
+          <ion-label floating  class="input-label"> Password </ion-label>
+          <button class="top-margin-14" ion-button clear color="white" type="button" item-left>
              <ion-icon name="lock"></ion-icon>
            </button>
           <ion-input
@@ -97,9 +99,10 @@
         </ion-item>
 
         <ion-item [class.invalid]="!signupForm.controls.confirmPassword.valid && signupForm.controls.confirmPassword.touched"
-                  [class.valid]="signupForm.controls.confirmPassword.valid && signupForm.controls.confirmPassword.touched">
-          <ion-label floating> Confirm Password </ion-label>
-          <button style="margin-top: 10%" ion-button clear color="white" type="button" item-left>
+                  [class.valid]="signupForm.controls.confirmPassword.valid && signupForm.controls.confirmPassword.touched"
+                    class="input-width">
+          <ion-label floating  class="input-label"> Confirm Password </ion-label>
+          <button class="top-margin-14" ion-button clear color="white" type="button" item-left>
              <ion-icon name="lock"></ion-icon>
            </button>
           <ion-input
@@ -120,7 +123,7 @@
   </div>
 
 
-  <div class="center-items">
+  <!-- <div class="center-items">
     <div>
       <button ion-button secondary class="fb-btn" (click)="fbLogin()">Log in with Facebook</button>
     </div>
@@ -128,6 +131,6 @@
       <button ion-button secondary  class="google-btn" (click)="googleLogin()">Sign in with Google</button>
     </div>
 
-  </div>
+  </div> -->
 
 </ion-content>

@@ -8,22 +8,22 @@ page-home {
     color: white !important;
     font-size: 1.5em !important;
     font-weight: 600;
+    padding: 1%;
   }
 
   .desc-font{
     font-size: 1em !important;
     color: white !important;
     font-weight: 600;
+    margin: 0;
   }
 
   .subdesc-font{
     font-size: 0.8em !important;
     color: white !important;
+    padding: 0 15%;
   }
 
-  .para-line-height{
-    line-height: 20px;
-  }
 
   .center-items{
     text-align: center;
@@ -31,8 +31,8 @@ page-home {
 
 
   .circle-pic{
-      width:50vw;
-      height:30vh;
+      width:150px;
+      height:auto;
       -webkit-border-radius: 50%;
       border-radius: 50%;
 
@@ -42,20 +42,24 @@ page-home {
     background-color: white !important;
     color: #488aff !important;
     width: 75%;
-    height: 55px;
+    height: 40px;
     font-size: 1em;
+    margin-bottom: 5%;
   }
 
-
-  .footer {
-   position:absolute;
-   bottom:0;
-   width:100%;
-   height:20%;
-   left: 0;
- }
-
-  .top-margin-10{
-    margin-top: 10% !important;
+  .padding-10{
+    padding: 10%;
   }
+
+#parent {height: 250px;}
+#floater {
+    float: left;
+    height: 50%;
+    width: 100%;
+    margin-bottom: -50px;
+}
+#child {
+    clear: both;
+    height: 100px;
+}
 }

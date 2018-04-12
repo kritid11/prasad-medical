@@ -1,23 +1,63 @@
+<ion-header>
+  <ion-navbar hideBackButton class="header">
+
+    <ion-buttons left>
+      <button ion-button icon-only><ion-icon name=""></ion-icon></button>
+    </ion-buttons>
+
+    <ion-title>
+      <ion-grid>
+         <ion-row>
+
+            <img class="circle-pic"
+              src="assets/imgs/logo.png">
+
+            <ion-col>
+              <div class="col-sm-6 col-xs-6 col-md-6 lft-margin-3">
+                <div class="title-font">PRASAD MEDICAL</div>
+                <div class="desc-font">And General stores,</div>
+                <div class="desc-font">Pratap Nagar, Nagpur</div>
+              </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-title>
+
+    <ion-buttons right>
+      <button ion-button menuToggle color="white">
+        <ion-icon name="menu"></ion-icon>
+      </button>
+    </ion-buttons>
+
+  </ion-navbar>
+</ion-header>
 
 <ion-content padding class="bg-blue center-items">
 
-  <img class="circle-pic top-margin-10"
-    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJAhFDqzmYWuS10TZEOm_QcPz0X9GQOweXHMHwdHYf-OW2MZmc">
+<div class="top-margin-10">
+    <div  class="frame">
+      <span class="helper"></span>
+    	<img src="assets/imgs/camera.png">
+    </div>
+    <div class="item-font"> Add Prescription </div>
 
-  <br><br>
-  <div class="header-font">PRASAD MEDICAL</div>
-  <div class="desc-font">And General stores, Pratap Nagar, Nagpur</div>
+    <div class="frame">
+      <span class="helper"></span>
+      <img src="assets/imgs/additem.png">
+    </div>
+    <div class="item-font"> Add Items </div>
 
-
-  <br><br><br>
-  <div class="para-line-height subdesc-font">
-    <div>Welcome to our mobile app.</div>
-    <div>The ease and comfort of shopping medicines online is here.</div>
-    <div>Order your medicines in few simple steps. Home delivery & pickup available.</div>
+    <div class="frame">
+      <span class="helper"></span>
+    	<img src="assets/imgs/refill.png">
+    </div>
+    <div class="item-font"> Refill Order </div>
   </div>
 
-  <div class="footer">
-    <button *ngIf="afterSplash" ion-button round secondary class="btn-white" (click)="goToLogin()">Login</button>
-    <ion-label *ngIf="afterSplash" class="desc-font" (click)="goToSignUp()">New User? Sign up here</ion-label>
-  </div>
+<!--
+    <div class=frame>
+      <span class="helper"></span>
+      <img src="http://jsfiddle.net/img/logo.png" />
+    </div> -->
+
 </ion-content>

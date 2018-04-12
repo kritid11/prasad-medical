@@ -1,0 +1,142 @@
+<ion-header>
+  <ion-navbar>
+    <div class="header center-items rt-margin-20">
+      <img class="circle-pic top-margin-10"
+        src="assets/imgs/logo.png">
+      <div class="header-font">PRASAD MEDICAL</div>
+      <div class="desc-font">And General stores, Pratap Nagar, Nagpur</div>
+    </div>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <div>
+    <form [formGroup]="accountForm" (submit)="updateAccountDetails()" novalidate>
+       <ion-grid>
+          <ion-row>
+              <ion-col>
+                <ion-item [class.invalid]="!accountForm.controls.firstName.valid && accountForm.controls.firstName.touched"
+                          [class.valid]="accountForm.controls.firstName.valid && accountForm.controls.firstName.touched"
+                          class="input-width">
+                  <ion-label floating class="input-label"> First name </ion-label>
+                  <ion-input formControlName="firstName" type="text"> </ion-input>
+                </ion-item>
+                <ion-item class="error-message" *ngIf="!accountForm.controls.firstName.valid &&
+                   accountForm.controls.firstName.touched">
+                  <p>Please enter a valid First name</p>
+                </ion-item>
+              </ion-col>
+
+              <ion-col>
+                <ion-item [class.invalid]="!accountForm.controls.lastName.valid && accountForm.controls.lastName.touched"
+                          [class.valid]="accountForm.controls.lastName.valid && accountForm.controls.lastName.touched"
+                            class="input-width">
+                  <ion-label floating  class="input-label"> Last name </ion-label>
+                  <ion-input formControlName="lastName" type="text"> </ion-input>
+                </ion-item>
+                <ion-item class="error-message" *ngIf="!accountForm.controls.lastName.valid &&
+                   accountForm.controls.lastName.touched">
+                  <p>Please enter a valid Last name</p>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+        </ion-grid>
+
+        <ion-item class="input-width">
+          <ion-label floating  class="input-label"> Email Id </ion-label>
+          <ion-input value = {{userEmail}}
+           type="email" disabled="true"> </ion-input>
+        </ion-item>
+
+        <ion-item class="input-width">
+          <ion-label floating  class="input-label"> Mobile </ion-label>
+          <ion-input value = {{userMobile}}
+            type="number" disabled="true"> </ion-input>
+        </ion-item>
+
+        <ion-item [class.invalid]="!accountForm.controls.addressType.valid && accountForm.controls.addressType.touched"
+                  [class.valid]="accountForm.controls.addressType.valid && accountForm.controls.addressType.touched"
+                    class="input-width">
+          <ion-label floating  class="input-label"> Name (Home, Work, etc) </ion-label>
+          <ion-input
+            formControlName="addressType"
+            type="text"> </ion-input>
+        </ion-item>
+        <ion-item class="error-message" *ngIf="!accountForm.controls.addressType.valid &&
+           accountForm.controls.addressType.touched">
+          <p>Please enter Address Type</p>
+        </ion-item>
+
+        <ion-item [class.invalid]="!accountForm.controls.flat.valid && accountForm.controls.flat.touched"
+                  [class.valid]="accountForm.controls.flat.valid && accountForm.controls.flat.touched"
+                    class="input-width">
+          <ion-label floating  class="input-label">Building Name</ion-label>
+          <ion-input
+            formControlName="flat"
+            type="text"> </ion-input>
+        </ion-item>
+        <ion-item class="error-message" *ngIf="!accountForm.controls.flat.valid &&
+           accountForm.controls.flat.touched">
+          <p>Please enter Flat No./ Plot No./ Building Name</p>
+        </ion-item>
+
+        <ion-item [class.invalid]="!accountForm.controls.street.valid && accountForm.controls.street.touched"
+                  [class.valid]="accountForm.controls.street.valid && accountForm.controls.street.touched"
+                    class="input-width">
+          <ion-label floating  class="input-label"> Street </ion-label>
+          <ion-input
+            formControlName="street"
+            type="text"> </ion-input>
+        </ion-item>
+        <ion-item class="error-message" *ngIf="!accountForm.controls.street.valid &&
+           accountForm.controls.street.touched">
+          <p>Please enter Street</p>
+        </ion-item>
+
+        <ion-grid>
+           <ion-row>
+                <ion-col>
+                 <ion-item [class.invalid]="!accountForm.controls.city.valid && accountForm.controls.city.touched"
+                           [class.valid]="accountForm.controls.city.valid && accountForm.controls.city.touched"
+                             class="input-width">
+                   <ion-label floating  class="input-label">City</ion-label>
+                   <ion-input
+                     formControlName="city"
+                     type="text"> </ion-input>
+                 </ion-item>
+                 <ion-item class="error-message" *ngIf="!accountForm.controls.city.valid &&
+                    accountForm.controls.city.touched">
+                   <p>Please enter City</p>
+                 </ion-item>
+                </ion-col>
+
+                <ion-col>
+                   <ion-item [class.invalid]="!accountForm.controls.state.valid && accountForm.controls.state.touched"
+                             [class.valid]="accountForm.controls.state.valid && accountForm.controls.state.touched"
+                               class="input-width">
+                     <ion-label floating  class="input-label"> State </ion-label>
+                     <ion-input
+                       formControlName="state"
+                       type="text"> </ion-input>
+                   </ion-item>
+                   <ion-item class="error-message" *ngIf="!accountForm.controls.state.valid &&
+                      accountForm.controls.state.touched">
+                     <p>Please enter State</p>
+                   </ion-item>
+                </ion-col>
+            </ion-row>
+          </ion-grid>
+
+
+        <div class="center-items">
+          <button ion-button secondary class="btn-blue" type="submit"
+          [disabled]="!accountForm.controls.firstName.valid || !accountForm.controls.lastName.valid || !accountForm.controls.flat.valid || !accountForm.controls.street.valid || !accountForm.controls.city.valid || !accountForm.controls.state.valid ">Save</button>
+
+        </div>
+      </form>
+  </div>
+
+
+
+
+</ion-content>

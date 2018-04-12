@@ -55,7 +55,7 @@ page-login {
  }
 
  .desc-font{
-   font-size: 0.6em !important;
+   font-size: 0.7em !important;
    color: white !important;
    padding-bottom: 10%;
  }
@@ -65,8 +65,8 @@ page-login {
  }
 
  .circle-pic{
-     width:40vw;
-     height:15vh;
+     width:100px;
+     height:auto;
      -webkit-border-radius: 50%;
      border-radius: 50%;
 
@@ -92,5 +92,13 @@ page-login {
 
   .rt-margin-20{
     margin-right: 20%;
+  }
+
+  .top-margin-14{
+    margin-top: 14% !important;
+  }
+
+  .input-width{
+    width: 92% !important;
   }
 }

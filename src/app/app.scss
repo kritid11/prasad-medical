@@ -36,6 +36,9 @@
   min-height: 2.2rem;
   p {
     font-size: 60%;
+    margin-left: 35px;
+    color: crimson;
+    white-space: pre-wrap;
   }
   ion-label {
     margin: 2px 0;
@@ -43,4 +46,48 @@
   .item-inner {
     border-bottom: 0 !important;
   }
+}
+
+.half-input-error-message {
+  min-height: 2.2rem;
+  p {
+    font-size: 60%;
+    margin-left: 17px;
+    color: crimson;
+    white-space: pre-wrap;
+  }
+  ion-label {
+    margin: 2px 0;
+  }
+  .item-inner {
+    border-bottom: 0 !important;
+  }
+}
+
+.input-label{
+  font-size: 0.8em;
+}
+
+.item-font{
+  font-size: 1em;
+  color: #488aff;
+}
+
+.footer-item-font{
+  font-size: 1.2em;
+  color: #488aff;
+}
+
+.subitem-font{
+  font-size: 0.8em;
+  color: #488aff;
+  padding-top: 5%;
+  padding-bottom: 10%
+
+}
+
+.menu-footer{
+  bottom: 0;
+  position: absolute;
+  padding: 7%;
 }

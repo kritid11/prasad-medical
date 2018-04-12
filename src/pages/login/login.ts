@@ -52,7 +52,7 @@ export class LoginPage {
       /**todo: call login service,
       on success go to NewRequest page
       */
-      this.navCtrl.push(NewRequestPage);
+      this.navCtrl.setRoot(NewRequestPage);
     }
 
     fbLogin(){

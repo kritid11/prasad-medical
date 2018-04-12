@@ -2,7 +2,7 @@
   <ion-navbar>
     <div class="header center-items rt-margin-20">
       <img class="circle-pic top-margin-10"
-        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJAhFDqzmYWuS10TZEOm_QcPz0X9GQOweXHMHwdHYf-OW2MZmc">
+        src="assets/imgs/logo.png">
       <div class="header-font">PRASAD MEDICAL</div>
       <div class="desc-font">And General stores, Pratap Nagar, Nagpur</div>
     </div>
@@ -13,11 +13,13 @@
   <div>
       <form [formGroup]="signinForm" (submit)="doLogin()" novalidate>
       <ion-item [class.invalid]="!signinForm.controls.emailOrMobile.valid && signinForm.controls.emailOrMobile.touched"
-                [class.valid]="signinForm.controls.emailOrMobile.valid && signinForm.controls.emailOrMobile.touched">
-        <ion-label floating> Email Id / Mobile No. </ion-label>
-        <button style="margin-top: 10%" ion-button clear color="white" type="button" item-left>
+                [class.valid]="signinForm.controls.emailOrMobile.valid && signinForm.controls.emailOrMobile.touched"
+                 class="input-width">
+        <ion-label floating class="input-label"> Email Id / Mobile No. </ion-label>
+        <button ion-button clear color="white" type="button" item-left class="top-margin-14">
            <ion-icon name="mail"></ion-icon>
          </button>
+
         <ion-input formControlName = "emailOrMobile"
           type="text"> </ion-input>
       </ion-item>
@@ -27,9 +29,10 @@
       </ion-item>
 
       <ion-item [class.invalid]="!signinForm.controls.password.valid && signinForm.controls.password.touched"
-                [class.valid]="signinForm.controls.password.valid && signinForm.controls.password.touched">
-        <ion-label floating> Password </ion-label>
-        <button style="margin-top: 10%" ion-button clear color="white" type="button" item-left>
+                [class.valid]="signinForm.controls.password.valid && signinForm.controls.password.touched"
+                 class="input-width">
+        <ion-label floating class="input-label"> Password </ion-label>
+        <button ion-button clear color="white" type="button" item-left class="top-margin-14">
            <ion-icon name="lock"></ion-icon>
          </button>
         <ion-input formControlName = "password"

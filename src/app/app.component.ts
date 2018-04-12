@@ -4,7 +4,16 @@ import { StatusBar } from '@ionic-native/status-bar';
 //import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { HomePage } from '../pages/home/home';
+import { LoginPage } from '../pages/login/login';
+import { NewRequestPage } from '../pages/new-request/new-request';
+import { AboutUsPage } from '../pages/about-us/about-us';
+import { TermsAndConditionsPage } from '../pages/terms-and-conditions/terms-and-conditions';
+import { PaymentAccDetailsPage } from '../pages/payment-acc-details/payment-acc-details';
+import { MyAccountPage } from '../pages/my-account/my-account';
+
 import firebase from 'firebase';
+
+
 
 const config = {
   apiKey: 'AIzaSyAL8QGw8wVJ4bVbIJJzqxXc8uOLqs3rSXE',
@@ -27,8 +36,10 @@ export class MyApp {
 
     // used for an example of ngFor and navigation
     this.pages = [
-      { title: 'Home', component: HomePage }
-      //{ title: 'List', component: ListPage }
+      { title: 'New Order', component: NewRequestPage },
+      { title: 'About Us', component: AboutUsPage },
+      { title: 'Terms and Conditions', component: TermsAndConditionsPage },
+      { title: 'Account Details for Payment', component: PaymentAccDetailsPage },
     ];
 
   }
@@ -48,5 +59,13 @@ export class MyApp {
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario
     this.nav.setRoot(page.component);
+  }
+
+  goToMyAccount(){
+    this.nav.push(MyAccountPage);
+  }
+
+  doLogout(){
+    this.nav.setRoot(HomePage);
   }
 }

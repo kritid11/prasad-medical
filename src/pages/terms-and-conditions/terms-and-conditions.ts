@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 
-
 @Component({
-  selector: 'page-new-request',
-  templateUrl: 'new-request.html'
+  selector: 'page-terms-and-conditions',
+  templateUrl: 'terms-and-conditions.html'
 })
-export class NewRequestPage {
+export class TermsAndConditionsPage {
+
 	  constructor(public navCtrl: NavController) {}
 
 }

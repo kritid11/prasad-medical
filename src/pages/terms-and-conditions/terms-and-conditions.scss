@@ -1,18 +1,5 @@
-page-new-request {
+page-terms-and-conditions {
 
-
-  .title-font{
-    font-size: 0.8em !important;
-    color: white !important;
-  }
-
-  .item-font{
-    font-size: 1.2em !important;
-    color: #488aff !important;
-    text-align: center;
-    margin-top: 5%;
-    margin-bottom: 10%
-  }
   .center-items{
     text-align: center;
   }
@@ -24,18 +11,9 @@ page-new-request {
       border-radius: 50%;
   }
 
-  .desc-font{
-
-    font-size: 0.6em !important;
-    color: white;
-    text-align: left;
-  }
-
   .toolbar-background {
     background-color: #488aff;
   }
-
-
 
   .ion-title {
     padding: 0 !important;
@@ -66,30 +44,33 @@ page-new-request {
   }
 
 
-  .frame {
-    height: 80px;
-    width: 80px;
-    border: 1px solid #488aff;
-    white-space: nowrap;
-    text-align: center;
-    border-radius: 50%;
-    margin:auto;
+  .header-title-font{
+    font-size: 0.8em !important;
+    color: white !important;
   }
 
-  .helper {
-      display: inline-block;
-      height: 100%;
-      vertical-align: middle;
+  .header-desc-font{
+    font-size: 0.6em !important;
+    color: white !important;
   }
 
-  img {
-
-      vertical-align: middle !important;
-      max-height: 80px  !important;
-      max-width: 40px  !important;
+  .content-title-font{
+    font-size: 1em !important;
+    color: grey !important;
+    padding: 5% 0;
+    font-weight: bold;
   }
 
-  .top-margin-10{
-    margin-top: 10%;
+  .content-desc-font{
+    font-size: 0.9em !important;
+    color: grey !important;
+    font-weight:bold;
+  }
+
+  .content-subdesc-font{
+    font-size: 0.8em !important;
+    color: grey !important;
+    padding: 3% 0;
+    text-align: justify;
   }
 }

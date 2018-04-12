@@ -55,7 +55,7 @@ page-register {
  }
 
  .desc-font{
-   font-size: 0.6em !important;
+   font-size: 0.7em !important;
    color: white !important;
    padding-bottom: 10%;
  }
@@ -65,8 +65,8 @@ page-register {
  }
 
  .circle-pic{
-     width:40vw;
-     height:15vh;
+     width:100px;
+     height:auto;
      -webkit-border-radius: 50%;
      border-radius: 50%;
 
@@ -111,19 +111,40 @@ page-register {
   }
 
   .col {
-    padding: 0 !important;
-    position: relative;
-    width: 100%;
-    margin: 0;
-    min-height: 1px;
-    -webkit-flex-basis: 0;
-    -ms-flex-preferred-size: 0;
-    flex-basis: 0;
-    -webkit-box-flex: 1;
-    -webkit-flex-grow: 1;
-    -ms-flex-positive: 1;
-    flex-grow: 1;
-    max-width: 100%;
-}
+      padding: 0 !important;
+      position: relative;
+      width: 100%;
+      margin: 0;
+      min-height: 1px;
+      -webkit-flex-basis: 0;
+      -ms-flex-preferred-size: 0;
+      flex-basis: 0;
+      -webkit-box-flex: 1;
+      -webkit-flex-grow: 1;
+      -ms-flex-positive: 1;
+      flex-grow: 1;
+      max-width: 100%;
+  }
+
+  .top-margin-14{
+    margin-top: 14% !important;
+  }
+
+  .top-margin-28{
+    margin-top: 28% !important;
+  }
+
+  .input-width{
+    width: 92%;
+  }
+
+  .half-input{
+    padding: 0;
+    width: 85%;
+  }
+
+  .input-label{
+    font-size: 0.8em;
+  }
 
 }

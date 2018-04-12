@@ -8,6 +8,10 @@ import { RegisterPage } from '../pages/register/register';
 import { LoginPage } from '../pages/login/login';
 import { ForgotPasswordPage } from '../pages/forgot-password/forgot-password';
 import { NewRequestPage } from '../pages/new-request/new-request';
+import { AboutUsPage } from '../pages/about-us/about-us';
+import { TermsAndConditionsPage } from '../pages/terms-and-conditions/terms-and-conditions';
+import { PaymentAccDetailsPage } from '../pages/payment-acc-details/payment-acc-details';
+import { MyAccountPage } from '../pages/my-account/my-account';
 
 import { StatusBar } from '@ionic-native/status-bar';
 //import { SplashScreen } from '@ionic-native/splash-screen';
@@ -23,7 +27,12 @@ import { GooglePlus } from '@ionic-native/google-plus';
     RegisterPage,
     LoginPage,
     ForgotPasswordPage,
-    NewRequestPage
+    NewRequestPage,
+    AboutUsPage,
+    TermsAndConditionsPage,
+    PaymentAccDetailsPage,
+    MyAccountPage
+
   ],
   imports: [
     BrowserModule,
@@ -36,7 +45,11 @@ import { GooglePlus } from '@ionic-native/google-plus';
     RegisterPage,
     LoginPage,
     ForgotPasswordPage,
-    NewRequestPage
+    NewRequestPage,
+    AboutUsPage,
+    TermsAndConditionsPage,
+    PaymentAccDetailsPage,
+    MyAccountPage
   ],
   providers: [
     StatusBar,
