@@ -3,15 +3,11 @@ import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 //import { SplashScreen } from '@ionic-native/splash-screen';
 
-import { HomePage } from '../pages/home/home';
-import { LoginPage } from '../pages/login/login';
-import { NewRequestPage } from '../pages/new-request/new-request';
-import { AboutUsPage } from '../pages/about-us/about-us';
-import { TermsAndConditionsPage } from '../pages/terms-and-conditions/terms-and-conditions';
-import { PaymentAccDetailsPage } from '../pages/payment-acc-details/payment-acc-details';
-import { MyAccountPage } from '../pages/my-account/my-account';
 
 import firebase from 'firebase';
+import { AlertController } from 'ionic-angular';
+import { Storage } from '@ionic/storage';
+import { Events } from 'ionic-angular';
 
 
 
@@ -27,20 +23,32 @@ const config = {
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = HomePage;
+  rootPage: any;// = HomePage;
+  userName : string;
 
   pages: Array<{title: string, component: any}>;
 
-  constructor(public platform: Platform, public statusBar: StatusBar){//, public splashScreen: SplashScreen) {
+  constructor(public platform: Platform, public statusBar: StatusBar,
+              private alertCtrl: AlertController,
+              private storage: Storage,
+              private events: Events){//, public splashScreen: SplashScreen) {
+
     this.initializeApp();
+
+    events.subscribe('user:loggedin', (userName) => {
+      // user and time are the same arguments passed in `events.publish(user, time)`
+        console.log('user:loggedin event subscribe');
+        this.userName = userName;
+    });
 
     // used for an example of ngFor and navigation
     this.pages = [
-      { title: 'New Order', component: NewRequestPage },
-      { title: 'About Us', component: AboutUsPage },
-      { title: 'Terms and Conditions', component: TermsAndConditionsPage },
-      { title: 'Account Details for Payment', component: PaymentAccDetailsPage },
+      { title: 'New Order', component: 'NewRequestPage' },
+      { title: 'About Us', component: 'AboutUsPage' },
+      { title: 'Terms and Conditions', component: 'TermsAndConditionsPage' },
+      { title: 'Account Details for Payment', component: 'PaymentAccDetailsPage' },
     ];
+
 
   }
 
@@ -50,6 +58,16 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
       //this.splashScreen.hide();
+
+      this.storage.get('userName').then((val) => {
+        console.log('menu userName', val);
+        this.userName = val;
+        if(this.userName == "" || this.userName == null || this.userName == undefined){
+          this.rootPage = 'HomePage';
+        }else{
+          this.rootPage = 'NewRequestPage';
+        }
+      });
 
     });
     firebase.initializeApp(config);
@@ -62,10 +80,35 @@ export class MyApp {
   }
 
   goToMyAccount(){
-    this.nav.push(MyAccountPage);
+    this.nav.push('MyAccountPage');
   }
 
   doLogout(){
-    this.nav.setRoot(HomePage);
+    this.presentLogoutConfirm();
   }
+
+  presentLogoutConfirm() {
+    let alert = this.alertCtrl.create({
+      title: 'Prasad Medical',
+      message: 'Do really want to logout?',
+      buttons: [
+        {
+          text: 'No',
+          role: 'cancel',
+          handler: () => {
+            //console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Yes',
+          handler: () => {
+            //console.log('Buy clicked');
+            this.storage.remove('userName');
+            this.nav.setRoot('HomePage');
+          }
+        }
+      ]
+    });
+    alert.present();
+  };
 }

@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, IonicPage } from 'ionic-angular';
 
 import {Validators, FormBuilder, FormGroup } from '@angular/forms';
 
-import { NewRequestPage } from '../new-request/new-request';
+//import { NewRequestPage } from '../new-request/new-request';
 
+@IonicPage()
 @Component({
   selector: 'page-my-account',
   templateUrl: 'my-account.html'
@@ -66,7 +67,7 @@ export class MyAccountPage {
       /**todo call updateAccount service,
       on success go to NewRequestPage
       */
-        this.navCtrl.setRoot(NewRequestPage);
+        this.navCtrl.setRoot('NewRequestPage');
 
     }
 

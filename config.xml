@@ -16,12 +16,12 @@
     <preference name="SplashScreen" value="none" />
     <platform name="android">
         <allow-intent href="market:*" />
-        <icon density="ldpi" src="resources/android/icon/drawable-ldpi-icon.png" />
-        <icon density="mdpi" src="resources/android/icon/drawable-mdpi-icon.png" />
-        <icon density="hdpi" src="resources/android/icon/drawable-hdpi-icon.png" />
-        <icon density="xhdpi" src="resources/android/icon/drawable-xhdpi-icon.png" />
-        <icon density="xxhdpi" src="resources/android/icon/drawable-xxhdpi-icon.png" />
-        <icon density="xxxhdpi" src="resources/android/icon/drawable-xxxhdpi-icon.png" />
+        <icon density="ldpi" src="resources/android/icon/logo.png" />
+        <icon density="mdpi" src="resources/android/icon/logo.png" />
+        <icon density="hdpi" src="resources/android/icon/logo.png" />
+        <icon density="xhdpi" src="resources/android/icon/logo.png" />
+        <icon density="xxhdpi" src="resources/android/icon/logo.png" />
+        <icon density="xxxhdpi" src="resources/android/icon/logo.png" />
     </platform>
     <platform name="ios">
         <allow-intent href="itms:*" />
@@ -50,7 +50,6 @@
         <variable name="APP_ID" value="1837651959868277" />
         <variable name="APP_NAME" value="Prasad Medical" />
     </plugin>
-    <plugin name="cordova-plugin-whitelist" spec="^1.3.3" />
     <plugin name="cordova-plugin-device" spec="^2.0.1" />
     <plugin name="cordova-plugin-ionic-webview" spec="^1.1.19" />
     <plugin name="cordova-plugin-ionic-keyboard" spec="^2.0.5" />
@@ -58,5 +57,17 @@
     <plugin name="cordova-plugin-googleplus" spec="^5.2.3">
         <variable name="REVERSED_CLIENT_ID" value="com.googleusercontent.apps.237370195633-sbga5pktq0b3vm7q3jddlu4t7k3qqafl" />
     </plugin>
-    <engine name="android" spec="6.3.0" />
+    <plugin name="cordova-sqlite-storage" spec="~2.3.0" />
+    <plugin name="cordova-plugin-file-transfer" spec="~1.7.1" />
+    <plugin name="cordova-plugin-camera" spec="~4.0.2" />
+    <plugin name="cordova-plugin-file" spec="~6.0.1" />
+    <plugin name="uk.co.workingedge.phonegap.plugin.launchnavigator" spec="^4.2.0" />
+    <plugin name="cordova-plugin-whitelist" spec="^1.3.3" />
+    <plugin name="cordova-plugin-googlemaps" spec="^2.2.9">
+        <variable name="API_KEY_FOR_ANDROID" value="AIzaSyBfuSFNeL3Rr4WIZrqH9dckxl0L4kgnFoA" />
+        <variable name="API_KEY_FOR_IOS" value="AIzaSyDO98ztw852K32w4Dq5mD5j0yEv0_Z2Tzw" />
+        <variable name="PLAY_SERVICES_VERSION" value="12.0.0" />
+        <variable name="ANDROID_SUPPORT_V4_VERSION" value="24.1.0" />
+    </plugin>
+    <engine name="android" spec="7.0.0" />
 </widget>

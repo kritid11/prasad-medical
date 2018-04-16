@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, IonicPage } from 'ionic-angular';
 
-import { LoginPage } from '../login/login';
+//import { LoginPage } from '../login/login';
+
 import {Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { EmailOrMobileValidator } from '../../validators/emailOrMobile';
 
+@IonicPage()
 @Component({
   selector: 'page-forgot-password',
   templateUrl: 'forgot-password.html'
@@ -31,6 +33,6 @@ export class ForgotPasswordPage {
       /**todo call forgotPassword service,
       on success go to login page
       */
-      this.navCtrl.push(LoginPage);
+      this.navCtrl.push('LoginPage');
     }
 }

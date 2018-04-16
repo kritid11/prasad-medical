@@ -1,0 +1,65 @@
+<ion-header>
+  <ion-navbar hideBackButton class="header">
+
+    <ion-buttons left>
+      <button ion-button icon-only><ion-icon name=""></ion-icon></button>
+    </ion-buttons>
+
+    <ion-title>
+      <ion-grid>
+         <ion-row>
+
+            <img class="circle-pic"
+              src="assets/imgs/logo.png">
+
+            <ion-col>
+              <div class="col-sm-6 col-xs-6 col-md-6 lft-margin-3">
+                <div class="title-font">PRASAD MEDICAL</div>
+                <div class="desc-font">And General stores,</div>
+                <div class="desc-font">Pratap Nagar, Nagpur</div>
+              </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-title>
+
+    <ion-buttons right>
+      <button ion-button menuToggle color="white">
+        <ion-icon name="menu"></ion-icon>
+      </button>
+    </ion-buttons>
+
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding >
+
+    <div class="title-font">Your Orders ( {{orders.length}} )</div>
+
+    <div>
+      <ion-item class="input-width">
+        <ion-label floating class="input-label"> Search by Bill number </ion-label>
+        <ion-input [(ngModel)]="billNumber"
+          type="number"  (keyup.enter)=searchByBillNumber(billNumber)> </ion-input>
+          <!-- <ion-icon item-right name="arrow-forward" class="blue-icon" (click)="searchByBillNumber(billNumber)"></ion-icon> -->
+      </ion-item>
+    </div>
+
+    <div>
+      <ion-list>
+        <ion-item *ngFor="let order of showOrders; let i = index" class="item-font" (click)="goToOrderDetailsPage()">
+          <div class="bt-padding"> {{order.mode}} </div>
+          <div class="bt-padding"> {{order.placedDate}} </div>
+          <div class="bt-padding"> {{order.status}} </div>
+        </ion-item>
+      </ion-list>
+    </div>
+
+  <div class="center-items">
+    <div>
+      <button ion-button secondary (click)="goToNewRequestPage()" class="btn-blue">New Order</button>
+    </div>
+  </div>
+
+</ion-content>

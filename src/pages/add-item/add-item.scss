@@ -1,0 +1,118 @@
+page-add-item {
+  .footer{
+    position: static;
+    bottom: 0;
+  }
+
+  .circle-pic{
+      width:70px;
+      height:70px;
+      -webkit-border-radius: 50%;
+      border-radius: 50%;
+  }
+
+  .center-items{
+    text-align: center;
+  }
+
+  .title-font{
+    font-size: 1.2em !important;
+    color: #488aff !important;
+    margin-bottom: 5%;
+
+  }
+
+  .btn-blue{
+    color: white !important;
+    width: 85% !important;
+    height: 55px;
+    font-size: 1.1em;
+    margin-top: 5%;
+  }
+
+  .top-margin-5{
+    margin-top: 5%;
+  }
+
+  .cross-over-img{
+    vertical-align: top;
+    float: right;
+    margin-top: 10%;
+  }
+
+  .content{
+    height: 70%;
+    overflow-y: scroll;
+  }
+
+  .toolbar-background {
+    background-color: #488aff;
+  }
+
+
+
+  .ion-title {
+    padding: 0 !important;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+  }
+
+  .lft-margin-3{
+      margin-left: 3%;
+      padding-top: 3%;
+  }
+
+  .bar-button-default-md, .bar-button-clear-md-default, .bar-button-md-default {
+      color: #fff;
+      background-color: transparent;
+  }
+
+
+  .frame {
+    height: 80px;
+    width: 80px;
+    border: 1px solid #488aff;
+    white-space: nowrap;
+    text-align: center;
+    border-radius: 50%;
+    margin:auto;
+  }
+
+  .helper {
+      display: inline-block;
+      height: 100%;
+      vertical-align: middle;
+  }
+
+  img {
+
+      vertical-align: middle !important;
+      max-height: 80px  !important;
+      max-width: 40px  !important;
+  }
+
+  .rl-padding-3{
+    padding: 0 3%;
+  }
+
+  .label-md {
+      margin: 0;
+  }
+
+  .item-font{
+    padding: 3% 0;
+    font-size: 1.2em;
+  }
+}

@@ -1,0 +1,77 @@
+<ion-header>
+  <ion-navbar hideBackButton class="header">
+
+    <ion-buttons left>
+      <button ion-button icon-only><ion-icon name=""></ion-icon></button>
+    </ion-buttons>
+
+    <ion-title>
+      <ion-grid>
+         <ion-row>
+
+            <img class="circle-pic"
+              src="assets/imgs/logo.png">
+
+            <ion-col>
+              <div class="col-sm-6 col-xs-6 col-md-6 lft-margin-3">
+                <div class="header-title-font">PRASAD MEDICAL</div>
+                <div class="header-desc-font">And General stores,</div>
+                <div class="header-desc-font">Pratap Nagar, Nagpur</div>
+              </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-title>
+
+    <ion-buttons right>
+      <button ion-button menuToggle color="white">
+        <ion-icon name="menu"></ion-icon>
+      </button>
+    </ion-buttons>
+
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+  <div class="content-title-font center-items">Thank you !</div>
+
+  <div class="content-desc-font center-items">
+    You will get message after your order is ready.
+  </div>
+
+  <!-- show map -->
+  <div #map id="map"></div>
+
+  <div class="item-font center-items bt-padding-5" (click)="goToGoogleMaps()">
+    Click here to get Directions
+  </div>
+
+
+  <div class="content-desc-font">
+    <div class="bt-padding-5">
+      <ion-icon item-right name="pin" class="theme-color"></ion-icon>
+      <span>
+        Pratap Nagar Main Rd,
+        <br>Pratap Nagar Square,
+        <br>Cement Road, Nagpur - 440022,
+        <br>Maharashtra, India
+      </span>
+    </div>
+
+    <div class="bt-padding-5">
+      <ion-icon item-right name="phone-portrait" class="theme-color"></ion-icon>
+      <span>+91 8149 555 590</span>
+    </div>
+
+    <div class="bt-padding-5">
+      <ion-icon item-right name="call" class="theme-color"></ion-icon>
+      <span>0712 223 1249</span>
+    </div>
+  </div>
+
+  <div class="center-items" (click)="goToNewRequestPage()">
+    <button ion-button secondary class="btn-blue">GO BACK TO DASHBOARD</button>
+  </div>
+
+</ion-content>

@@ -34,30 +34,30 @@
 
 <ion-content padding class="bg-blue center-items">
 
-<div class="top-margin-10">
-    <div  class="frame" (click)="goToAddPrescription()">
-      <span class="helper"></span>
-    	<img src="assets/imgs/camera.png">
-    </div>
-    <div class="item-font" (click)="goToAddPrescription()"> Add Prescription </div>
+  <div class="top-margin-10">
+      <div  class="frame" (click)="gotToConfirmOrder()">
+        <span class="helper"></span>
+      	<img src="assets/imgs/pickup.png">
+      </div>
+      <div class="item-font" (click)="gotToConfirmOrder()"> Pickup </div>
 
-    <div class="frame" (click)="goToAddItems()">
-      <span class="helper"></span>
-      <img src="assets/imgs/additem.png">
-    </div>
-    <div class="item-font" (click)="goToAddItems()"> Add Items </div>
-
-    <div class="frame" (click)="goToOrderHistory()">
-      <span class="helper"></span>
-    	<img src="assets/imgs/refill.png">
-    </div>
-    <div class="item-font" (click)="goToOrderHistory()"> Refill Order </div>
+      <div class="frame" (click)="goToSetAddress()">
+        <span class="helper"></span>
+        <img src="assets/imgs/delivery.png">
+      </div>
+      <div class="item-font" (click)="goToSetAddress()"> Delivery </div>
   </div>
 
-<!--
-    <div class=frame>
-      <span class="helper"></span>
-      <img src="http://jsfiddle.net/img/logo.png" />
-    </div> -->
+  <div>
+    <div class="grey-header-font">NOTE:</div>
+    <div class="grey-desc-font">
+    HOME DELIVERYS ARE NOT AVAILABLE FOR SCHEDULED DRUGS.<br>
+    Kindly display thr original prescription at the time of picking up medicines or at time of delivery.
+  </div>
+
+  <div class="item-font" (click)="goToTermsAndConditionsPage()">
+    <strong>Terms and Conditions</strong>
+  </div>
+  </div>
 
 </ion-content>

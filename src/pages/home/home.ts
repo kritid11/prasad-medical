@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, IonicPage } from 'ionic-angular';
 
-import { LoginPage } from '../login/login';
-import { RegisterPage } from '../register/register';
+// import { LoginPage } from '../login/login';
+// import { RegisterPage } from '../register/register';
 
+@IonicPage()
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
@@ -24,11 +25,11 @@ export class HomePage {
 	  }
 
 	  goToLogin(){
-	     this.navCtrl.push(LoginPage);
+	     this.navCtrl.push('LoginPage');
 	  }
 
 	  goToSignUp(){
-	  	this.navCtrl.push(RegisterPage);
+	  	this.navCtrl.push('RegisterPage');
 	  }
 
 }

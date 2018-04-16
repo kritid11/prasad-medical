@@ -1,0 +1,72 @@
+<ion-header>
+  <ion-navbar hideBackButton class="header">
+
+    <ion-buttons left>
+      <button ion-button icon-only><ion-icon name=""></ion-icon></button>
+    </ion-buttons>
+
+    <ion-title>
+      <ion-grid>
+         <ion-row>
+
+            <img class="circle-pic"
+              src="assets/imgs/logo.png">
+
+            <ion-col>
+              <div class="col-sm-6 col-xs-6 col-md-6 lft-margin-3">
+                <div class="title-font">PRASAD MEDICAL</div>
+                <div class="desc-font">And General stores,</div>
+                <div class="desc-font">Pratap Nagar, Nagpur</div>
+              </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-title>
+
+    <ion-buttons right>
+      <button ion-button menuToggle color="white">
+        <ion-icon name="menu"></ion-icon>
+      </button>
+    </ion-buttons>
+
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding >
+
+  <div class="">
+    <div class="title-font">Your Items</div>
+
+    <div>
+      <ion-item class="input-width">
+        <ion-label floating class="input-label"> Enter Item name </ion-label>
+        <ion-input [(ngModel)]="itemName"
+          type="text"> </ion-input>
+      </ion-item>
+    </div>
+
+    <br><br>
+    <div>
+      <ion-list>
+        <div *ngFor="let item of items; let i = index" class="row item-font">
+          <ion-label class="input-label"> {{item.itemName}} </ion-label>
+
+          <ion-icon item-right name="add-circle" (click)="increaseQuanity(i)"></ion-icon>
+          <span class="rl-padding-3">{{item.quantity}}</span>
+          <ion-icon item-right name="remove" (click)="decreaseQuanity(i)"></ion-icon>
+        </div>
+      </ion-list>
+    </div>
+  </div>
+
+  <div class="center-items">
+    <div>
+      <button ion-button secondary (click)="addItem(itemName)" class="btn-blue">Add Item</button>
+    </div>
+    <div>
+      <button ion-button secondary (click)="goToSelectMode()" class="btn-blue">Next</button>
+    </div>
+  </div>
+
+</ion-content>
