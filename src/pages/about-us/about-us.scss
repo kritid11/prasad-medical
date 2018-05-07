@@ -29,7 +29,7 @@ page-about-us {
   }
 
   .circle-pic{
-      width:70px;
+      width:40px;
       height:60px;
       -webkit-border-radius: 50%;
       border-radius: 50%;
@@ -61,6 +61,11 @@ page-about-us {
   .bar-button-default-md, .bar-button-clear-md-default, .bar-button-md-default {
       color: #fff;
       background-color: transparent;
+  }
+
+  .lft-margin-3{
+      margin-left: 3%;
+      padding-top: 3%;
   }
 
 }

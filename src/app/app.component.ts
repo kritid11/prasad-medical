@@ -63,7 +63,7 @@ export class MyApp {
         console.log('menu userName', val);
         this.userName = val;
         if(this.userName == "" || this.userName == null || this.userName == undefined){
-          this.rootPage = 'HomePage';
+          this.rootPage = 'SplashPage';
         }else{
           this.rootPage = 'NewRequestPage';
         }
@@ -76,6 +76,7 @@ export class MyApp {
   openPage(page) {
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario
+
     this.nav.setRoot(page.component);
   }
 

@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, IonicPage } from 'ionic-angular';
 
+import { Storage } from '@ionic/storage';
+import { AlertController } from 'ionic-angular';
+
 /**
  * Generated class for the AddItemPage page.
  *
@@ -17,24 +20,21 @@ import { NavController, NavParams, IonicPage } from 'ionic-angular';
 })
 export class AddItemPage {
 
-  items : Array<{name: string, quantity: number}> = [];
+  items : Array<{item_name: string, item_quantity: number}> = [];
   item: any;
   itemName: string = "";
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController,
+              public navParams: NavParams,
+              private storage: Storage,
+              private alertCtrl: AlertController) {
 
-    this.item = {
-      itemName: 'Calpol',
-      quantity: 1
-    };
-    this.items.push(this.item);
-
-    this.item = {
-      itemName: 'Crocin',
-      quantity: 1
-    };
-    this.items.push(this.item);
-
+    this.storage.get('itemsArray').then((val) => {
+        console.log('from storage itemsArray', val);
+        if(val != null){
+          this.items = val;
+        }
+    });
 
   }
 
@@ -43,26 +43,66 @@ export class AddItemPage {
   }
 
   addItem(itemName){
+    if(this.itemName == ""){
+      this.presentAlert('Please enter the name of item');
+      return;
+    }
+
     this.item = {
-      itemName: itemName,
-      quantity: 1
+      item_name: itemName,
+      item_quantity: 1
     };
     this.items.push(this.item);
     this.itemName = "";
+
+    //todo save it in Storage
+    this.storage.set('itemsArray',this.items);
+    console.log('itemsArray saved',this.storage.get('itemsArray'));
   }
 
   increaseQuanity(index){
-    this.items[index].quantity = this.items[index].quantity + 1;
+    this.items[index].item_quantity = this.items[index].item_quantity + 1;
   }
 
   decreaseQuanity(index){
-    if(this.items[index].quantity !=1){
-      this.items[index].quantity = this.items[index].quantity - 1;
+    if(this.items[index].item_quantity !=1){
+      this.items[index].item_quantity = this.items[index].item_quantity - 1;
+    }else{
+      this.items.splice(index,1);
     }
   }
 
   goToSelectMode(){
-    this.navCtrl.push('SelectModePage');
+    this.storage.get('pxIdArray').then((val) => {
+      console.log('storage pxIdArray', val);
+
+      this.storage.get('itemsArray').then((val1) => {
+        console.log('storage itemsArray', val1);
+
+        if(val1 != null || val != null){
+          this.navCtrl.push('SelectModePage');
+        }else{
+          this.presentAlert('Please add atleast one item or one prescrition to place order');
+        }
+
+      });
+    });
   }
 
+  presentAlert(msg) {
+    let alert = this.alertCtrl.create({
+      title: 'Prasad Medical',
+      message: msg,
+      buttons: [
+        {
+          text: 'Ok',
+          role: 'cancel',
+          handler: () => {
+            //console.log('Cancel clicked');
+          }
+        }
+      ]
+    });
+    alert.present();
+  };
 }

@@ -11,32 +11,39 @@ import { HttpParams } from '@angular/common/http';
 */
 @Injectable()
 export class RestProvider {
-  apiUrl = 'https://jsonplaceholder.typicode.com';
+  //apiUrl = 'https://jsonplaceholder.typicode.com';
+  apiUrl = 'https://d2953c3e.ngrok.io/prasad-medical/public';
 
   constructor(public http: HttpClient) {
     console.log('Hello RestProvider Provider');
   }
 
-  getUsers() {
+  getRequest(api, params) {
+    console.log(this.apiUrl + api + params);
     return new Promise(resolve => {
-      this.http.get(this.apiUrl+'/users').subscribe(data => {
+      this.http.get(this.apiUrl + api + params).subscribe(data => {
         resolve(data);
+
       }, err => {
         console.log(err);
       });
     });
   }
 
-  saveUser(data) {
+  postRequest(api, data) {
+    console.log("api",this.apiUrl + api);
+    console.log("params",JSON.stringify(data));
     return new Promise((resolve, reject) => {
-      this.http.post(this.apiUrl+'/users', JSON.stringify(data),
+      this.http.post(this.apiUrl + api, JSON.stringify(data),
         {
-          headers: new HttpHeaders().set('Authorization', 'my-auth-token'),
-          params: new HttpParams().set('id', '3'),
+          //headers: new HttpHeaders().set('Authorization', 'my-auth-token'),
+          //params: new HttpParams().set('id', '3'),
         })
         .subscribe(res => {
+          console.log('rest resolve');
           resolve(res);
         }, (err) => {
+          console.log('rest reject');
           reject(err);
         });
     });

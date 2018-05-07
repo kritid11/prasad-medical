@@ -1,12 +1,12 @@
 page-add-item {
   .footer{
-    position: static;
+    position: fixed;
     bottom: 0;
   }
 
   .circle-pic{
       width:70px;
-      height:70px;
+      height:60px;
       -webkit-border-radius: 50%;
       border-radius: 50%;
   }
@@ -15,7 +15,7 @@ page-add-item {
     text-align: center;
   }
 
-  .title-font{
+  .label-font{
     font-size: 1.2em !important;
     color: #488aff !important;
     margin-bottom: 5%;
@@ -24,10 +24,10 @@ page-add-item {
 
   .btn-blue{
     color: white !important;
-    width: 85% !important;
+    width: 90vw !important;
     height: 55px;
     font-size: 1.1em;
-    margin-top: 5%;
+    margin: 3% 0;
   }
 
   .top-margin-5{
@@ -115,4 +115,16 @@ page-add-item {
     padding: 3% 0;
     font-size: 1.2em;
   }
+
+  .title-font{
+    font-size: 0.8em !important;
+    color: white !important;
+  }
+
+  .desc-font{
+    font-size: 0.6em !important;
+    color: white;
+    text-align: left;
+  }
+
 }

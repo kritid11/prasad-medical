@@ -5,8 +5,9 @@ import {Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { Facebook } from '@ionic-native/facebook';
 // import { GooglePlus } from '@ionic-native/google-plus';
 // import { Firebase } from '@ionic-native/firebase';
-
-//import { LoginPage } from '../login/login';
+import { AlertController } from 'ionic-angular';
+import { LoadingController } from 'ionic-angular';
+import { RestProvider } from '../../providers/rest/rest';
 
 import { EmailValidator } from '../../validators/email';
 import { PasswordMatchValidator } from '../../validators/passwordMatch';
@@ -17,19 +18,18 @@ import { PasswordMatchValidator } from '../../validators/passwordMatch';
   templateUrl: 'register.html'
 })
 export class RegisterPage {
-    firstName: string = "";
-    lastName: string = "";
-    emailId: string = "";
-    mobile: string = "";
-    password : string = "";
-    confirmPassword: string = "";
 
-    userProfile: any = null;
+    result: any;
+    user: any;
 
     private signupForm : FormGroup;
 
-	  constructor(public navCtrl: NavController, private fb: Facebook,
-       private formBuilder: FormBuilder) {
+	  constructor(public navCtrl: NavController,
+                private fb: Facebook,
+                private formBuilder: FormBuilder,
+                public restProvider: RestProvider,
+                public loadingCtrl: LoadingController,
+                private alertCtrl: AlertController) {
 
         this.signupForm = this.formBuilder.group({
           email: [
@@ -80,14 +80,56 @@ export class RegisterPage {
       /**todo call register service,
       on success go to login page
       */
-      // this.firstName = this.signinForm.value['firstName'];
-      // this.lastName = this.signinForm.value['lastName'];
-      // this.email = this.signinForm.value['email'];
-      // this.mobile = this.signinForm.value['mobile'];
-      // this.password = this.signinForm.value['password'];
-      // this.confirmPassword = this.signinForm.value['confirmPassword'];
-      this.navCtrl.push('LoginPage');
 
-    }
+      this.user ={
+            "first_name": this.signupForm.value['firstName'],
+            "last_name": this.signupForm.value['lastName'],
+            "email": this.signupForm.value['email'],
+            "password": this.signupForm.value['password'],
+            "provider": "system",
+            "mobile": this.signupForm.value['mobile']
+      };
 
+
+      let loader = this.loadingCtrl.create({
+        content: "Signing up..."
+      });
+      loader.present();
+
+     this.restProvider.postRequest('/signup', this.user).then((result) => {
+       loader.dismiss();
+       console.log(result);
+         this.result = result;
+
+         if(this.result.statusKey == 200){
+           this.navCtrl.setRoot('LoginPage');
+         }else if(this.result.statusKey == 400){
+           this.presentAlert(this.result.message);
+         }else{
+           this.presentAlert('Something went wrong.. Please try again.');
+         }
+
+     }, (err) => {
+       loader.dismiss();
+       console.log(err);
+       this.presentAlert('Something went wrong.. Please try again.');
+     });
+  };
+
+  presentAlert(msg) {
+    let alert = this.alertCtrl.create({
+      title: 'Prasad Medical',
+      message: msg,
+      buttons: [
+        {
+          text: 'Ok',
+          role: 'cancel',
+          handler: () => {
+            //console.log('Cancel clicked');
+          }
+        }
+      ]
+    });
+    alert.present();
+  };
 }

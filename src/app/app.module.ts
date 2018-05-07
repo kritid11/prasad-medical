@@ -4,18 +4,6 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 
 import { MyApp } from './app.component';
 import { FormsModule } from '@angular/forms';
-// import { HomePage } from '../pages/home/home';
-// import { RegisterPage } from '../pages/register/register';
-// import { LoginPage } from '../pages/login/login';
-// import { ForgotPasswordPage } from '../pages/forgot-password/forgot-password';
-// import { NewRequestPage } from '../pages/new-request/new-request';
-// import { AboutUsPage } from '../pages/about-us/about-us';
-// import { TermsAndConditionsPage } from '../pages/terms-and-conditions/terms-and-conditions';
-// import { PaymentAccDetailsPage } from '../pages/payment-acc-details/payment-acc-details';
-// import { MyAccountPage } from '../pages/my-account/my-account';
-// import { AddPrescriptionPage } from '../pages/add-prescription/add-prescription';
-// import { AddItemPage } from '../pages/add-item/add-item';
-// import { SelectModePage } from '../pages/select-mode/select-mode';
 
 import { StatusBar } from '@ionic-native/status-bar';
 //import { SplashScreen } from '@ionic-native/splash-screen';
@@ -27,28 +15,16 @@ import { RestProvider } from '../providers/rest/rest';
 import { IonicStorageModule } from '@ionic/storage';
 import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer';
 import { File } from '@ionic-native/file';
+import { FilePath } from '@ionic-native/file-path';
 import { Camera } from '@ionic-native/camera';
 import { LaunchNavigator} from '@ionic-native/launch-navigator';
 import { GoogleMaps } from "@ionic-native/google-maps";
+import { Toast } from '@ionic-native/toast';
 
 
 @NgModule({
   declarations: [
     MyApp
-    // HomePage,
-    // RegisterPage,
-    // LoginPage,
-    // ForgotPasswordPage,
-    // NewRequestPage,
-    // AboutUsPage,
-    // TermsAndConditionsPage,
-    // PaymentAccDetailsPage,
-    // MyAccountPage,
-    // AddPrescriptionPage,
-    // AddItemPage,
-    // SelectModePage
-    // ConfirmOrderPage
-
   ],
   imports: [
     BrowserModule,
@@ -60,19 +36,6 @@ import { GoogleMaps } from "@ionic-native/google-maps";
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp
-    // HomePage,
-    // RegisterPage,
-    // LoginPage,
-    // ForgotPasswordPage,
-    // NewRequestPage,
-    // AboutUsPage,
-    // TermsAndConditionsPage,
-    // PaymentAccDetailsPage,
-    // MyAccountPage,
-    // AddPrescriptionPage,
-    // AddItemPage,
-    // SelectModePage
-    // ConfirmOrderPage
   ],
   providers: [
     StatusBar,
@@ -83,9 +46,11 @@ import { GoogleMaps } from "@ionic-native/google-maps";
     FileTransfer,
     FileTransferObject,
     File,
+    FilePath,
     Camera,
     LaunchNavigator,
-    GoogleMaps
+    GoogleMaps,
+    Toast
   ]
 })
 export class AppModule {}

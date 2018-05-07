@@ -10,19 +10,7 @@ import { NavController, IonicPage } from 'ionic-angular';
   templateUrl: 'home.html'
 })
 export class HomePage {
-
-	  afterSplash: boolean = false;
-    logo: any;
-
-	  constructor(public navCtrl: NavController) {
-
-      this.logo = 'https://www.shareicon.net/download/2016/10/20/846409_blue_512x512.png';
-	  	let TIME_IN_MS = 2000;
-  		setTimeout( () => {
-  		     // somecode
-  		     this.afterSplash=true;
-  		}, TIME_IN_MS);
-	  }
+	  constructor(public navCtrl: NavController) {}
 
 	  goToLogin(){
 	     this.navCtrl.push('LoginPage');

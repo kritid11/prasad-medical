@@ -1,5 +1,9 @@
-page-terms-and-conditions {
+page-another-address {
 
+  .title-font{
+    font-size: 0.8em !important;
+    color: white !important;
+  }
   .center-items{
     text-align: center;
   }
@@ -11,9 +15,18 @@ page-terms-and-conditions {
       border-radius: 50%;
   }
 
+  .desc-font{
+
+    font-size: 0.6em !important;
+    color: white;
+    text-align: left;
+  }
+
   .toolbar-background {
     background-color: #488aff;
   }
+
+
 
   .ion-title {
     padding: 0 !important;
@@ -43,34 +56,47 @@ page-terms-and-conditions {
       background-color: transparent;
   }
 
+  .col {
+      padding: 0 !important;
+      position: relative;
+      width: 100%;
+      margin: 0;
+      min-height: 1px;
+      -webkit-flex-basis: 0;
+      -ms-flex-preferred-size: 0;
+      flex-basis: 0;
+      -webkit-box-flex: 1;
+      -webkit-flex-grow: 1;
+      -ms-flex-positive: 1;
+      flex-grow: 1;
+      max-width: 100%;
+  }
 
-  .header-title-font{
-    font-size: 0.8em !important;
+  .btn-blue{
     color: white !important;
+    width: 92% !important;
+    height: 55px;
+    font-size: 1.1em;
+    margin-top: 5%;
   }
 
-  .header-desc-font{
-    font-size: 0.6em !important;
-    color: white !important;
+  .input-width{
+    width: 92%;
   }
 
-  .content-title-font{
-    font-size: 1em !important;
-    color: grey !important;
-    padding: 5% 0;
-    font-weight: bold;
+  .half-input{
+    padding: 0;
+    width: 85%;
   }
 
-  .content-desc-font{
-    font-size: 0.9em !important;
-    color: grey !important;
-    font-weight:bold;
+  .input-label{
+    font-size: 0.8em;
   }
 
-  .content-subdesc-font{
-    font-size: 0.8em !important;
-    color: grey !important;
-    padding: 3% 0;
-    text-align: justify;
+  .error-message p {
+    font-size: 60%;
+    margin-left: 0px;
+    color: crimson;
+    white-space: pre-wrap;
   }
 }

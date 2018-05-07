@@ -15,7 +15,7 @@ page-order-details {
 
   .circle-pic{
       width:70px;
-      height:70px;
+      height:60px;
       -webkit-border-radius: 50%;
       border-radius: 50%;
   }
@@ -24,7 +24,7 @@ page-order-details {
     text-align: center;
   }
 
-  .title-font{
+  .label-font{
     font-size: 1.2em !important;
     color: #488aff !important;
     margin-bottom: 5%;
@@ -111,4 +111,25 @@ page-order-details {
   .rl-padding-3{
     padding: 0 3%;
   }
+
+  .input-font{
+    font-size: 0.8em;
+  }
+
+  .rl-padding-8{
+    padding: 0 8%;
+  }
+
+  .title-font{
+    font-size: 0.8em !important;
+    color: white !important;
+  }
+
+  .desc-font{
+    font-size: 0.6em !important;
+    color: white;
+    text-align: left;
+  }
+
+
 }

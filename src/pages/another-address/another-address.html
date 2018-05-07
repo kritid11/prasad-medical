@@ -1,0 +1,140 @@
+<ion-header>
+  <ion-navbar class="header">
+
+    <ion-title>
+      <ion-grid>
+         <ion-row>
+
+            <img class="circle-pic"
+              src="assets/imgs/logo.png">
+
+            <ion-col>
+              <div class="col-sm-6 col-xs-6 col-md-6 lft-margin-3">
+                <div class="title-font">PRASAD MEDICAL</div>
+                <div class="desc-font">And General stores,</div>
+                <div class="desc-font">Pratap Nagar, Nagpur</div>
+              </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-title>
+
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <div>
+    <form [formGroup]="addressForm" (submit)="deliverToThisAddress()" novalidate>
+
+        <ion-item [class.invalid]="!addressForm.controls.addressType.valid && addressForm.controls.addressType.touched"
+                  [class.valid]="addressForm.controls.addressType.valid && addressForm.controls.addressType.touched"
+                    class="input-width">
+          <ion-label floating  class="input-label"> Name (Home, Work, etc) </ion-label>
+          <ion-input
+            formControlName="addressType"
+            type="text"> </ion-input>
+        </ion-item>
+        <ion-item class="error-message" *ngIf="!addressForm.controls.addressType.valid &&
+           addressForm.controls.addressType.touched">
+          <p>Please enter Address Type</p>
+        </ion-item>
+
+        <ion-item [class.invalid]="!addressForm.controls.street.valid && addressForm.controls.street.touched"
+                  [class.valid]="addressForm.controls.street.valid && addressForm.controls.street.touched"
+                    class="input-width">
+          <ion-label floating  class="input-label"> Street </ion-label>
+          <ion-input
+            formControlName="street"
+            type="text"> </ion-input>
+        </ion-item>
+        <ion-item class="error-message" *ngIf="!addressForm.controls.street.valid &&
+           addressForm.controls.street.touched">
+          <p>Please enter Street</p>
+        </ion-item>
+
+        <ion-grid>
+           <ion-row>
+                <ion-col>
+                 <ion-item [class.invalid]="!addressForm.controls.city.valid && addressForm.controls.city.touched"
+                           [class.valid]="addressForm.controls.city.valid && addressForm.controls.city.touched"
+                             class="input-width">
+                   <ion-label floating  class="input-label">City</ion-label>
+                   <ion-input
+                     formControlName="city"
+                     type="text"> </ion-input>
+                 </ion-item>
+                 <ion-item class="error-message" *ngIf="!addressForm.controls.city.valid &&
+                    addressForm.controls.city.touched">
+                   <p>Please enter City</p>
+                 </ion-item>
+                </ion-col>
+
+                <ion-col>
+                   <ion-item class="input-width">
+                     <ion-label floating  class="input-label"> State </ion-label>
+                     <ion-input
+                       formControlName="state"
+                       type="text"  disabled="true"> </ion-input>
+                   </ion-item>
+                </ion-col>
+            </ion-row>
+          </ion-grid>
+
+          <ion-grid>
+             <ion-row>
+                  <ion-col>
+                   <ion-item class="input-width">
+                     <ion-label floating  class="input-label">Country</ion-label>
+                     <ion-input
+                       formControlName="country"
+                       type="text" disabled="true"> </ion-input>
+                   </ion-item>
+                  </ion-col>
+
+                  <ion-col>
+                    <ion-item [class.invalid]="!addressForm.controls.pincode.valid && addressForm.controls.pincode.touched"
+                              [class.valid]="addressForm.controls.pincode.valid && addressForm.controls.pincode.touched"
+                                class="input-width">
+                      <ion-label floating  class="input-label">Pincode</ion-label>
+                      <ion-input
+                        formControlName="pincode"
+                        type="number"> </ion-input>
+                    </ion-item>
+                    <ion-item class="error-message" *ngIf="!addressForm.controls.pincode.valid &&
+                       addressForm.controls.pincode.touched">
+                      <p>Please enter Pincode</p>
+                    </ion-item>
+                  </ion-col>
+              </ion-row>
+            </ion-grid>
+
+            <ion-item [class.invalid]="!addressForm.controls.email.valid && addressForm.controls.email.touched"
+                      [class.valid]="addressForm.controls.email.valid && addressForm.controls.email.touched"
+                      class="input-width">
+              <ion-label floating  class="input-label"> Email Id </ion-label>
+              <ion-input formControlName="email"
+               type="email"> </ion-input>
+            </ion-item>
+            <ion-item class="error-message" *ngIf="!addressForm.controls.email.valid &&
+               addressForm.controls.email.touched">
+              <p>Please enter Email Id</p>
+            </ion-item>
+
+            <ion-item [class.invalid]="!addressForm.controls.mobile.valid && addressForm.controls.mobile.touched"
+                      [class.valid]="addressForm.controls.mobile.valid && addressForm.controls.mobile.touched"
+                      class="input-width">
+              <ion-label floating  class="input-label"> Mobile </ion-label>
+              <ion-input formControlName="mobile"
+                type="number"> </ion-input>
+            </ion-item>
+            <ion-item class="error-message" *ngIf="!addressForm.controls.mobile.valid &&
+               addressForm.controls.mobile.touched">
+              <p>Please enter Mobile number</p>
+            </ion-item>
+
+        <div class="center-items">
+          <button ion-button secondary class="btn-blue" type="submit"
+          [disabled]="!addressForm.controls.email.valid || !addressForm.controls.mobile.valid || !addressForm.controls.pincode.valid || !addressForm.controls.street.valid || !addressForm.controls.city.valid || !addressForm.controls.addressType.valid ">Deliver to this address</button>
+        </div>
+      </form>
+  </div>

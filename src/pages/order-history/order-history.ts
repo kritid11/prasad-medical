@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
+import { Storage } from '@ionic/storage';
+
 /**
  * Generated class for the OrderHistoryPage page.
  *
@@ -22,24 +24,13 @@ export class OrderHistoryPage {
 
   order: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController,
+              public navParams: NavParams,
+              private storage: Storage) {
 
-    //dummy values
-    this.order = {mode: 'By Delivery', placedDate: '10/4/18 9.30am', status: 'Delivered', billNumber: '101'};
-    this.orders.push(this.order);
+    //todo call getOrderHistoryApi, show the list of orders got
+    this.callGetOrderHistoryApi();
 
-    this.order = {mode: 'Pick Up', placedDate: '12/4/18 9.30am', status: 'Picked up', billNumber: '201'};
-    this.orders.push(this.order);
-
-    this.order = {mode: 'By Delivery', placedDate: '13/4/18 9.30am', status: 'On the way', billNumber: '301'};
-    this.orders.push(this.order);
-
-    this.order = {mode: 'Pick Up', placedDate: '15/4/18 9.30am', status: 'Order Ready for pickup', billNumber: '401'};
-    this.orders.push(this.order);
-    console.log('orders length: ', this.orders.length);
-
-
-    this.setShowOrders();
   }
 
   ionViewDidLoad() {
@@ -87,9 +78,45 @@ export class OrderHistoryPage {
     }
   }
 
-  goToOrderDetailsPage(){
-    //set order details of this bill no in storage to fetch on next page
+  goToOrderDetailsPage(i){
+    //saving billno in storage, to call getORderDetails on next page
+    this.storage.set('billno',this.showOrders[i].billNumber);
     this.navCtrl.push('OrderDetailsPage');
+  }
+
+  callGetOrderHistoryApi(){
+    this.storage.get('userId').then((val) => {
+      console.log('storage userId', val);
+      //pass val to api, on success initialise orders and show else show error popup
+
+      //dummy values
+      this.order = {mode: 'By Delivery', placedDate: '10/4/18 9.30am', status: 'Delivered', billNumber: '101'};
+      this.orders.push(this.order);
+
+      this.order = {mode: 'Pick Up', placedDate: '12/4/18 9.30am', status: 'Picked up', billNumber: '201'};
+      this.orders.push(this.order);
+
+      this.order = {mode: 'By Delivery', placedDate: '13/4/18 9.30am', status: 'On the way', billNumber: '301'};
+      this.orders.push(this.order);
+
+      this.order = {mode: 'Pick Up', placedDate: '15/4/18 9.30am', status: 'Order Ready for pickup', billNumber: '401'};
+      this.orders.push(this.order);
+
+      this.order = {mode: 'By Delivery', placedDate: '10/4/18 9.30am', status: 'Delivered', billNumber: '101'};
+      this.orders.push(this.order);
+
+      this.order = {mode: 'Pick Up', placedDate: '12/4/18 9.30am', status: 'Picked up', billNumber: '201'};
+      this.orders.push(this.order);
+
+      this.order = {mode: 'By Delivery', placedDate: '13/4/18 9.30am', status: 'On the way', billNumber: '301'};
+      this.orders.push(this.order);
+
+      this.order = {mode: 'Pick Up', placedDate: '15/4/18 9.30am', status: 'Order Ready for pickup', billNumber: '401'};
+      this.orders.push(this.order);
+      console.log('orders length: ', this.orders.length);
+
+      this.setShowOrders();
+    });
   }
 
 }

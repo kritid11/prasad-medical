@@ -1,0 +1,65 @@
+page-splash {
+
+  .bg-blue{
+    background-color: #488aff;
+  }
+
+  .header-font{
+    color: white !important;
+    font-size: 1.5em !important;
+    font-weight: 600;
+    padding: 1%;
+  }
+
+  .desc-font{
+    font-size: 1em !important;
+    color: white !important;
+    font-weight: 600;
+    margin: 0;
+  }
+
+  .subdesc-font{
+    font-size: 0.8em !important;
+    color: white !important;
+    padding: 0 15%;
+  }
+
+
+  .center-items{
+    text-align: center;
+  }
+
+
+  .circle-pic{
+      width:150px;
+      height:auto;
+      -webkit-border-radius: 50%;
+      border-radius: 50%;
+
+  }
+
+  .btn-white{
+    background-color: white !important;
+    color: #488aff !important;
+    width: 75%;
+    height: 40px;
+    font-size: 1em;
+    margin-bottom: 5%;
+  }
+
+  .padding-10{
+    padding: 10%;
+  }
+
+#parent {height: 250px;}
+#floater {
+    float: left;
+    height: 50%;
+    width: 100%;
+    margin-bottom: -50px;
+}
+#child {
+    clear: both;
+    height: 100px;
+}
+}

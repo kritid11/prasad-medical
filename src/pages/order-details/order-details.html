@@ -1,9 +1,5 @@
 <ion-header>
-  <ion-navbar hideBackButton class="header">
-
-    <ion-buttons left>
-      <button ion-button icon-only><ion-icon name=""></ion-icon></button>
-    </ion-buttons>
+  <ion-navbar  class="header">
 
     <ion-title>
       <ion-grid>
@@ -39,14 +35,14 @@
               <ion-col>
                 <ion-item class="input-width">
                   <ion-label floating class="input-label"> Bill Number </ion-label>
-                  <ion-input [(ngModel)]="order.billNumber" type="number" [disabled] = "true"> </ion-input>
+                  <ion-input [(ngModel)]="order.billNumber" class="input-font" type="number" [disabled] = "true"> </ion-input>
                 </ion-item>
               </ion-col>
 
               <ion-col>
                 <ion-item class="input-width">
                   <ion-label floating  class="input-label"> Order placed on </ion-label>
-                  <ion-input [(ngModel)]="order.placedDate" type="text" [disabled] = "true"> </ion-input>
+                  <ion-input [(ngModel)]="order.placedDate" class="input-font" type="text" [disabled] = "true"> </ion-input>
                 </ion-item>
               </ion-col>
             </ion-row>
@@ -55,21 +51,22 @@
                 <ion-col>
                   <ion-item class="input-width">
                     <ion-label floating class="input-label"> Type </ion-label>
-                    <ion-input [(ngModel)]="mode" type="text" [disabled] = "true"> </ion-input>
+                    <ion-input [(ngModel)]="order.mode"  class="input-font" type="text" [disabled] = "true"> </ion-input>
                   </ion-item>
                 </ion-col>
 
                 <ion-col>
                   <ion-item class="input-width">
                     <ion-label floating  class="input-label"> Status </ion-label>
-                    <ion-input [(ngModel)]="status" type="text" [disabled] = "true"> </ion-input>
+                    <ion-input [(ngModel)]="order.status"  class="input-font" type="text" [disabled] = "true"> </ion-input>
                   </ion-item>
                 </ion-col>
               </ion-row>
       </ion-grid>
 
-      <div>
-        <div class="title-font">Your Prescriptions</div>
+      <br>
+      <div class="rl-padding-8" *ngIf="smallImgs.length != 0">
+        <div class="label-font">Your Prescriptions</div>
         <ion-list>
           <button ion-item *ngFor="let smallImg of smallImgs; let i = index"  (click)="deletePrescription(i)">
             <ion-icon name="close" class="cross-over-img"></ion-icon>
@@ -78,7 +75,8 @@
         </ion-list>
       </div>
 
-      <div>
+      <div class="rl-padding-8" *ngIf="items.length != 0">
+        <div class="label-font">Your Items</div>
         <ion-list>
           <div *ngFor="let item of items; let i = index" class="row item-font">
             <ion-label class="input-label"> {{item.itemName}} </ion-label>
@@ -95,7 +93,7 @@
       </div>
 
       <div class="center-items">
-        <button ion-button secondary class="btn-blue" click="cancelOrder()">CANCEL ORDER</button>
+        <button ion-button secondary class="btn-blue" (click)="confirmCancel()">CANCEL ORDER</button>
       </div>
 
   </div>
