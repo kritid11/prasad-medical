@@ -1,7 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
+import { AlertController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
+import { RestProvider } from '../../providers/rest/rest';
+import { LoadingController } from 'ionic-angular';
 
 /**
  * Generated class for the OrderHistoryPage page.
@@ -19,22 +22,28 @@ import { Storage } from '@ionic/storage';
 })
 export class OrderHistoryPage {
 
-  orders: Array<{mode: string, placedDate: string, status: string, billNumber: string}> = [];
-  showOrders: Array<{mode: string, placedDate: string, status: string, billNumber: string}> = [];
-
+  // orders: Array<{mode: string, placedDate: string, status: string, billNumber: string}> = [];
+  // showOrders: Array<{mode: string, placedDate: string, status: string, billNumber: string}> = [];
+  @ViewChild('focusInput') searchInput ;
   order: any;
+  result: any;
+  orders: Array<any> = [];
+  showOrders: Array<any> = [];
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
-              private storage: Storage) {
+              private alertCtrl: AlertController,
+              private storage: Storage,
+              public restProvider: RestProvider,
+              public loadingCtrl: LoadingController) {
 
     //todo call getOrderHistoryApi, show the list of orders got
     this.callGetOrderHistoryApi();
-
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad OrderHistoryPage');
+
   }
 
   goToNewRequestPage(){
@@ -45,18 +54,18 @@ export class OrderHistoryPage {
     //todo: filter orders based on bill no.
     for(var i=0; i < this.orders.length; i++){
       if(billNumber == "" || billNumber == undefined){
-        this.setShowOrders();
+        this.resetShowOrders();
         // console.log("on empty search refill showOrders:",this.showOrders.length);
         // console.log("on empty search orders:",this.orders.length);
         break;
       }
-      else if(this.orders[i].billNumber == billNumber){
+      else if(this.orders[i].id == billNumber){
         this.showOrders.splice(0);
         this.order = {
-          billNumber: this.orders[i].billNumber,
-          placedDate: this.orders[i].placedDate,
-          mode: this.orders[i].mode,
-          status: this.orders[i].status
+          id: this.orders[i].id,
+          created_at: this.orders[i].created_at,
+          order_mode: this.orders[i].order_mode,
+          order_status: this.orders[i].order_status
         }
         this.showOrders.push(this.orders[i]);
         break;
@@ -66,57 +75,81 @@ export class OrderHistoryPage {
     }
   }
 
-  setShowOrders(){
+  resetShowOrders(){
     for(var i=0; i < this.orders.length; i++){
+      if(this.orders[i].order_mode == 'p'){
+        this.orders[i].order_mode = "Pickup";
+      }else{
+        this.orders[i].order_mode = "Delivery";
+      }
       this.order = {
-        billNumber: this.orders[i].billNumber,
-        placedDate: this.orders[i].placedDate,
-        mode: this.orders[i].mode,
-        status: this.orders[i].status
+        id: this.orders[i].id,
+        created_at: this.orders[i].created_at,
+        order_mode: this.orders[i].order_mode,
+        order_status: this.orders[i].order_status
       }
       this.showOrders.push(this.order);
     }
+
+    this.searchInput.setFocus();
   }
 
   goToOrderDetailsPage(i){
     //saving billno in storage, to call getORderDetails on next page
-    this.storage.set('billno',this.showOrders[i].billNumber);
+    console.log('order id selected:', this.showOrders[i].id);
+    this.storage.set('order_id',this.showOrders[i].id);
     this.navCtrl.push('OrderDetailsPage');
   }
 
-  callGetOrderHistoryApi(){
-    this.storage.get('userId').then((val) => {
-      console.log('storage userId', val);
-      //pass val to api, on success initialise orders and show else show error popup
+  callGetOrderHistoryApi() {
+        this.storage.get('userId').then((val) => {
 
-      //dummy values
-      this.order = {mode: 'By Delivery', placedDate: '10/4/18 9.30am', status: 'Delivered', billNumber: '101'};
-      this.orders.push(this.order);
+          console.log('storage userId', val);
+          let loader = this.loadingCtrl.create({
+            content: "getting Order History..."
+          });
+          loader.present();
 
-      this.order = {mode: 'Pick Up', placedDate: '12/4/18 9.30am', status: 'Picked up', billNumber: '201'};
-      this.orders.push(this.order);
+          this.restProvider.getRequest('/getOrderHistory', '/' + val)
+          .then((result) => {
+            loader.dismiss();
+            console.log(result);
+            this.result = result;
+            if(this.result.statusKey == 200){
+              this.orders = this.result.data;
+              console.log('orders length: ', this.orders.length);
 
-      this.order = {mode: 'By Delivery', placedDate: '13/4/18 9.30am', status: 'On the way', billNumber: '301'};
-      this.orders.push(this.order);
+              //this.showOrders = this.orders;
+              this.resetShowOrders();
 
-      this.order = {mode: 'Pick Up', placedDate: '15/4/18 9.30am', status: 'Order Ready for pickup', billNumber: '401'};
-      this.orders.push(this.order);
+            }else if(this.result.statusKey == 400){
+                this.presentAlert(this.result.message);
+            }else{
+                this.presentAlert('Something went wrong.. Please try again.');
+            }
+        },(err) => {
+           loader.dismiss();
+           console.log(err);
+           this.presentAlert('Something went wrong.. Please try again.');
+         });
+      });
+    }
 
-      this.order = {mode: 'By Delivery', placedDate: '10/4/18 9.30am', status: 'Delivered', billNumber: '101'};
-      this.orders.push(this.order);
-
-      this.order = {mode: 'Pick Up', placedDate: '12/4/18 9.30am', status: 'Picked up', billNumber: '201'};
-      this.orders.push(this.order);
-
-      this.order = {mode: 'By Delivery', placedDate: '13/4/18 9.30am', status: 'On the way', billNumber: '301'};
-      this.orders.push(this.order);
-
-      this.order = {mode: 'Pick Up', placedDate: '15/4/18 9.30am', status: 'Order Ready for pickup', billNumber: '401'};
-      this.orders.push(this.order);
-      console.log('orders length: ', this.orders.length);
-
-      this.setShowOrders();
-    });
-  }
+    presentAlert(msg) {
+      let alert = this.alertCtrl.create({
+        title: 'Prasad Medical',
+        message: msg,
+        buttons: [
+          {
+            text: 'Ok',
+            role: 'cancel',
+            handler: () => {
+              //console.log('Cancel clicked');
+            }
+          }
+        ]
+      });
+      alert.present();
+    }
 
 }

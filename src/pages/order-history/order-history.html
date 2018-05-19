@@ -35,10 +35,11 @@
     <div class="label-font">Your Orders ( {{orders.length}} )</div>
 
     <div>
+      <!-- <div class="label-font">Search</div> -->
       <ion-item class="input-width">
         <ion-label floating class="input-label"> Search by Bill number </ion-label>
-        <ion-input [(ngModel)]="billNumber"
-          type="number"  (keyup.enter)=searchByBillNumber(billNumber)> </ion-input>
+        <ion-input [(ngModel)]="billNumber" #focusInput
+          type="number" (keyup.enter)=searchByBillNumber(billNumber)> </ion-input>
           <!-- <ion-icon item-right name="arrow-forward" class="blue-icon" (click)="searchByBillNumber(billNumber)"></ion-icon> -->
       </ion-item>
     </div>
@@ -46,9 +47,9 @@
     <div>
       <ion-list>
         <ion-item *ngFor="let order of showOrders; let i = index" class="item-font" (click)="goToOrderDetailsPage(i)">
-          <div class="bt-padding"> {{order.mode}} </div>
-          <div class="bt-padding"> {{order.placedDate}} </div>
-          <div class="bt-padding"> {{order.status}} </div>
+          <div class="bt-padding"> {{order.order_mode}} </div>
+          <div class="bt-padding"> {{order.created_at | date : 'dd-MM-yyyy'}} </div>
+          <div class="bt-padding"> {{order.order_status}} </div>
         </ion-item>
       </ion-list>
     </div>

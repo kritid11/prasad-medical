@@ -38,13 +38,13 @@ export class ForgotPasswordPage {
     forgotPassword(){
       /**todo call forgotPassword service,
       on success go to login page
-      */      
+      */
       this.user ={
          "email": this.forgotPasswordForm.value['emailOrMobile']
       };
 
       let loader = this.loadingCtrl.create({
-        content: "Sending new password..."
+        content: "Sending new password to your registered Email id..."
       });
       loader.present();
 
@@ -55,7 +55,8 @@ export class ForgotPasswordPage {
 
            if(this.result.statusKey == 200){
              this.action = 'onSuccess';
-             this.presentAlert(this.result.statusMessage);
+             //this.presentAlert(this.result.message);
+             this.presentAlert('A new password has been sent to your registered email id.');
            }else if(this.result.statusKey == 400){
              this.action = 'none';
              this.presentAlert(this.result.message);
@@ -81,7 +82,7 @@ export class ForgotPasswordPage {
             role: 'cancel',
             handler: () => {
               if(this.action == 'onSuccess'){
-                this.navCtrl.setRoot('LoginPage');
+                this.navCtrl.pop();
               }
               //console.log('Cancel clicked');
             }

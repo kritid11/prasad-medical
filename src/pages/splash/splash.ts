@@ -15,6 +15,9 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class SplashPage {
 
+  items : Array<any> = [];
+  a : any;
+
   constructor(public navCtrl: NavController,
               public navParams: NavParams) {
 
@@ -23,6 +26,7 @@ export class SplashPage {
 		     // somecode
 		     this.navCtrl.push('HomePage');
 		}, TIME_IN_MS);
+
   }
 
 

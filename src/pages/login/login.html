@@ -10,12 +10,6 @@
 </ion-header>
 
 <ion-content padding>
-  <!-- <ion-list inset>
-    <ion-item *ngFor="let user of users">
-      <h2>{{user.name}}</h2>
-      <p>{{user.email}}</p>
-    </ion-item>
-  </ion-list> -->
   <div>
       <form [formGroup]="signinForm" (submit)="doLogin()" novalidate>
       <ion-item [class.invalid]="!signinForm.controls.emailOrMobile.valid && signinForm.controls.emailOrMobile.touched"
@@ -62,7 +56,7 @@
       <button ion-button secondary class="fb-btn" (click)="fbLogin()">Log in with Facebook</button>
     </div>
     <div>
-      <button ion-button secondary  class="google-btn" (click)="googleLogin()">Sign in with Google</button>
+      <button ion-button secondary  class="google-btn" (click)="doGoogleLogin()">Sign in with Google</button>
     </div>
     <div>
       <ion-label class="link-style" (click)="goToForgotPassword()">Forgot Password?</ion-label>

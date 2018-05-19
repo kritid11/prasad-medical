@@ -61,12 +61,16 @@ export class MyAccountPage {
             Validators.compose([ Validators.required])
           ],
           state: [
-            '',
+            'Maharashtra',
             Validators.compose([ Validators.required])
           ],
           pincode: [
             '',
-            Validators.compose([ Validators.required])
+            Validators.compose(
+                      [Validators.maxLength(6),
+                      Validators.minLength(6),
+                      Validators.required]
+                )
           ],
           email : [''],
           mobile: [

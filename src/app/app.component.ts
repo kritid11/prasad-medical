@@ -10,13 +10,6 @@ import { Storage } from '@ionic/storage';
 import { Events } from 'ionic-angular';
 
 
-
-const config = {
-  apiKey: 'AIzaSyAL8QGw8wVJ4bVbIJJzqxXc8uOLqs3rSXE',
-  //authDomain: 'YOUR_AUTH_DOMAIN',
-  projectId: 'prasad-medical-200413'
-};
-
 @Component({
   templateUrl: 'app.html'
 })
@@ -70,7 +63,7 @@ export class MyApp {
       });
 
     });
-    firebase.initializeApp(config);
+
   }
 
   openPage(page) {
@@ -105,6 +98,10 @@ export class MyApp {
           handler: () => {
             //console.log('Buy clicked');
             this.storage.remove('userName');
+            this.storage.remove('userId');
+            this.storage.remove('email');
+            this.storage.remove('mobile');
+
             this.nav.setRoot('HomePage');
           }
         }

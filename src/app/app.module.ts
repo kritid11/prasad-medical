@@ -20,6 +20,9 @@ import { Camera } from '@ionic-native/camera';
 import { LaunchNavigator} from '@ionic-native/launch-navigator';
 import { GoogleMaps } from "@ionic-native/google-maps";
 import { Toast } from '@ionic-native/toast';
+import { Geolocation } from '@ionic-native/geolocation';
+import { DatePipe } from '@angular/common';
+import { RecursiveSearchService } from '../providers/recursive-search-service';
 
 
 @NgModule({
@@ -41,7 +44,8 @@ import { Toast } from '@ionic-native/toast';
     StatusBar,
     //SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    [Facebook, GooglePlus],
+    Facebook,
+    GooglePlus,
     RestProvider,
     FileTransfer,
     FileTransferObject,
@@ -50,7 +54,10 @@ import { Toast } from '@ionic-native/toast';
     Camera,
     LaunchNavigator,
     GoogleMaps,
-    Toast
+    Toast,
+    Geolocation,
+    DatePipe,
+    RecursiveSearchService
   ]
 })
 export class AppModule {}

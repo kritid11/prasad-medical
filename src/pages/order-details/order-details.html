@@ -35,14 +35,14 @@
               <ion-col>
                 <ion-item class="input-width">
                   <ion-label floating class="input-label"> Bill Number </ion-label>
-                  <ion-input [(ngModel)]="order.billNumber" class="input-font" type="number" [disabled] = "true"> </ion-input>
+                  <ion-input [(ngModel)]="order.order_id" class="input-font" type="number" [disabled] = "true"> </ion-input>
                 </ion-item>
               </ion-col>
 
               <ion-col>
                 <ion-item class="input-width">
                   <ion-label floating  class="input-label"> Order placed on </ion-label>
-                  <ion-input [(ngModel)]="order.placedDate" class="input-font" type="text" [disabled] = "true"> </ion-input>
+                  <ion-input [(ngModel)]="order.created_at" class="input-font" [disabled] = "true"> </ion-input>
                 </ion-item>
               </ion-col>
             </ion-row>
@@ -51,48 +51,54 @@
                 <ion-col>
                   <ion-item class="input-width">
                     <ion-label floating class="input-label"> Type </ion-label>
-                    <ion-input [(ngModel)]="order.mode"  class="input-font" type="text" [disabled] = "true"> </ion-input>
+                    <ion-input [(ngModel)]="order.order_mode"  class="input-font" type="text" [disabled] = "true"> </ion-input>
                   </ion-item>
                 </ion-col>
 
                 <ion-col>
                   <ion-item class="input-width">
                     <ion-label floating  class="input-label"> Status </ion-label>
-                    <ion-input [(ngModel)]="order.status"  class="input-font" type="text" [disabled] = "true"> </ion-input>
+                    <ion-input [(ngModel)]="order.order_status"  class="input-font" type="text" [disabled] = "true"> </ion-input>
                   </ion-item>
                 </ion-col>
               </ion-row>
       </ion-grid>
 
+      <hr>
       <br>
+      <div class="rl-padding-8 label-font" *ngIf="smallImgs.length == 0">
+        No Prescriptions added
+      </div>
       <div class="rl-padding-8" *ngIf="smallImgs.length != 0">
         <div class="label-font">Your Prescriptions</div>
         <ion-list>
-          <button ion-item *ngFor="let smallImg of smallImgs; let i = index"  (click)="deletePrescription(i)">
-            <ion-icon name="close" class="cross-over-img"></ion-icon>
-            <img [src]="smallImg" *ngIf="smallImg" class="circle-pic">
+          <button ion-item *ngFor="let smallImg of smallImgs; let i = index">
+            <img [src]="smallImg.prescription" *ngIf="smallImg" class="circle-pic">
           </button>
         </ion-list>
       </div>
 
+      <hr>
+
+      <div class="rl-padding-8 label-font" *ngIf="items.length == 0">
+        No items added
+      </div>
       <div class="rl-padding-8" *ngIf="items.length != 0">
         <div class="label-font">Your Items</div>
         <ion-list>
           <div *ngFor="let item of items; let i = index" class="row item-font">
-            <ion-label class="input-label"> {{item.itemName}} </ion-label>
-
-            <ion-icon item-right name="add-circle" (click)="increaseQuanity(i)"></ion-icon>
-            <span class="rl-padding-3">{{item.quantity}}</span>
-            <ion-icon item-right name="remove" (click)="decreaseQuanity(i)"></ion-icon>
+            <ion-label class="input-label"> {{item.item_name}} </ion-label>
+            <span class="rl-padding-3">{{item.item_quantity}}</span>
           </div>
         </ion-list>
       </div>
 
-      <div class="center-items">
+      <hr>
+      <div class="center-items" *ngIf="order.order_status!='Pending'">
         <button ion-button secondary class="btn-blue" type="submit" (click)="gotToSelectMode()">REORDER</button>
       </div>
 
-      <div class="center-items">
+      <div class="center-items" *ngIf="order.order_status=='Pending'">
         <button ion-button secondary class="btn-blue" (click)="confirmCancel()">CANCEL ORDER</button>
       </div>
 

@@ -26,7 +26,10 @@
 <ion-content padding >
 
   <div class="">
+    <div class="label-font" *ngIf="items.length == 0">No Items added</div>
     <div class="label-font" *ngIf="items.length != 0">Your Items</div>
+
+    <ion-auto-complete [dataProvider]="recursiveSearchService"></ion-auto-complete>
 
     <div>
       <ion-item class="input-width">
@@ -55,7 +58,7 @@
       <button ion-button secondary (click)="addItem(itemName)" class="btn-blue">Add Item</button>
     </div>
     <div>
-      <button ion-button secondary (click)="goToSelectMode()" class="btn-blue">Place Order</button>
+      <button ion-button secondary (click)="goToReviewOrder()" class="btn-blue">Place Order</button>
     </div>
   </div>
 

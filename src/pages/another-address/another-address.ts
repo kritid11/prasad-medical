@@ -55,9 +55,13 @@ export class AnotherAddressPage {
                   ],
                   pincode: [
                     '',
-                    Validators.compose([ Validators.required])
+                    Validators.compose(
+                              [Validators.maxLength(6),
+                              Validators.minLength(6),
+                              Validators.required]
+                        )
                   ],
-                  state: [''],
+                  state: ['Maharashtra'],
                   country: ['India']
                 });
   }
@@ -80,27 +84,27 @@ export class AnotherAddressPage {
         this.storage.get('userId').then((val2) => {
           console.log('storage userId', val2);
 
-        //mode is pickup here, address will b blank
+          //mode is pickup here, address will b blank
 
-        this.order ={
-           "user_id" : val2,
-           "prescription_array" : val,
-           "items_array" : val1,
-           "mode" : "d",
-           "address":{
-             "nickname": this.addressForm.value['addressType'],
-             "street": this.addressForm.value['street'],
-             "city": this.addressForm.value['city'],
-             "pincode": this.addressForm.value['pincode']
-           },
-           "email" : this.addressForm.value['email'],
-           "mobile" : this.addressForm.value['mobile']
-        };
+          this.order ={
+             "user_id" : val2,
+             "prescription_array" : val,
+             "items_array" : val1,
+             "mode" : "d",
+             "address":{
+               "nickname": this.addressForm.value['addressType'],
+               "street": this.addressForm.value['street'],
+               "city": this.addressForm.value['city'],
+               "pincode": this.addressForm.value['pincode']
+             },
+             "email" : this.addressForm.value['email'],
+             "mobile" : this.addressForm.value['mobile']
+          };
 
-        let loader = this.loadingCtrl.create({
-          content: "Placing your order..."
-        });
-        loader.present();
+          let loader = this.loadingCtrl.create({
+            content: "Placing your order..."
+          });
+          loader.present();
 
          this.restProvider.postRequest('/placeOrder', this.order).then((result) => {
            loader.dismiss();
@@ -108,6 +112,9 @@ export class AnotherAddressPage {
              this.result = result;
 
              if(this.result.statusKey == 200){
+               this.storage.remove('pxIdArray');
+               this.storage.remove('smallImgs');
+               this.storage.remove('itemsArray');
                this.navCtrl.setRoot('ConfirmOrderPage');
              }else if(this.result.statusKey == 400){
                this.presentAlert(this.result.message);

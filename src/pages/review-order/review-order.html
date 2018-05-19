@@ -1,0 +1,70 @@
+<ion-header>
+  <ion-navbar  class="header">
+
+    <ion-title>
+      <ion-grid>
+         <ion-row>
+
+            <img class="circle-pic"
+              src="assets/imgs/logo.png">
+
+            <ion-col>
+              <div class="col-sm-6 col-xs-6 col-md-6 lft-margin-3">
+                <div class="title-font">PRASAD MEDICAL</div>
+                <div class="desc-font">And General stores,</div>
+                <div class="desc-font">Pratap Nagar, Nagpur</div>
+              </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-title>
+
+    <ion-buttons right>
+      <button ion-button menuToggle color="white">
+        <ion-icon name="menu"></ion-icon>
+      </button>
+    </ion-buttons>
+
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <div>
+
+      <div class="header-label-font">Review Order</div>
+      <br>
+      <div class="rl-padding-8 label-font" *ngIf="smallImgs.length == 0">
+        No Prescriptions added
+      </div>
+      <div class="rl-padding-8" *ngIf="smallImgs.length != 0">
+        <div class="label-font">Your Prescriptions</div>
+        <ion-list>
+          <button ion-item *ngFor="let smallImg of smallImgs; let i = index"  (click)="deletePrescription(i)">
+            <!-- <ion-icon name="close" class="cross-over-img"></ion-icon> -->
+            <img [src]="smallImg" *ngIf="smallImg" class="circle-pic">
+          </button>
+        </ion-list>
+      </div>
+
+      <hr>
+      <div class="rl-padding-8 label-font" *ngIf="items.length == 0">
+        No items added
+      </div>
+      <div class="rl-padding-8" *ngIf="items.length != 0">
+        <div class="label-font">Your Items</div>
+        <ion-list>
+          <div *ngFor="let item of items; let i = index" class="row item-font">
+            <ion-label class="input-label"> {{item.item_name}} </ion-label>
+            <span class="rl-padding-3">{{item.item_quantity}}</span>
+          </div>
+        </ion-list>
+      </div>
+
+      <hr>
+
+      <div class="center-items">
+        <button ion-button secondary class="btn-blue" type="submit" (click)="gotToSelectMode()">Place Order</button>
+      </div>
+
+  </div>
+</ion-content>

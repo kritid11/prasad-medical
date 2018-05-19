@@ -73,8 +73,7 @@ export class SelectModePage {
               console.log('storage email', val3);
 
               this.storage.get('mobile').then((val4) => {
-                console.log('storage mobile', val4);
-
+              console.log('storage mobile', val4);
                 //mode is pickup here, address will b blank
                 this.order ={
                    "prescription_array" : val,
@@ -84,7 +83,6 @@ export class SelectModePage {
                    "address" : null,
                    "email"  : val3,
                    "mobile" : val4
-
                 };
 
                 let loader = this.loadingCtrl.create({
@@ -92,26 +90,29 @@ export class SelectModePage {
                 });
                 loader.present();
 
-                 this.restProvider.postRequest('/placeOrder', this.order).then((result) => {
-                   loader.dismiss();
-                   console.log(result);
-                     this.result = result;
+               this.restProvider.postRequest('/placeOrder', this.order).then((result) => {
+                 loader.dismiss();
+                 console.log(result);
+                   this.result = result;
 
-                     if(this.result.statusKey == 200){
-                       this.navCtrl.setRoot('ConfirmOrderPage');
-                     }else if(this.result.statusKey == 400){
-                       this.presentAlert(this.result.message);
-                     }else{
-                       this.presentAlert('Something went wrong.. Please try again.');
-                     }
+                   if(this.result.statusKey == 200){
+                     this.storage.remove('pxIdArray');
+                     this.storage.remove('smallImgs');
+                     this.storage.remove('itemsArray');
+                     this.navCtrl.setRoot('ConfirmOrderPage');
+                   }else if(this.result.statusKey == 400){
+                     this.presentAlert(this.result.message);
+                   }else{
+                     this.presentAlert('Something went wrong.. Please try again.');
+                   }
 
-                 }, (err) => {
-                   loader.dismiss();
-                   console.log(err);
-                   this.presentAlert('Something went wrong.. Please try again.');
-                 });
+               }, (err) => {
+                 loader.dismiss();
+                 console.log(err);
+                 this.presentAlert('Something went wrong.. Please try again.');
                });
             });
+          });
         });
       });
     });

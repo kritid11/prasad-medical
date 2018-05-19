@@ -1,6 +1,15 @@
-page-order-history {
+page-review-order {
+
+  .input-width{
+    width: 92%;
+  }
+
+  .input-label{
+    font-size: 0.8em;
+  }
+
   .footer{
-    position: fixed;
+    position: static;
     bottom: 0;
   }
 
@@ -22,15 +31,18 @@ page-order-history {
 
   }
 
-  .btn-blue{
-    color: white !important;
-    width: 90vw !important;
-    height: 55px;
-    font-size: 1.1em;
-    margin: 3% 0;
+  .header-label-font{
+    font-size: 1.4em !important;
+    color: #488aff !important;
+    font-weight: bold;
+    margin-bottom: 5%;
   }
 
-  .top-margin-5{
+  .btn-blue{
+    color: white !important;
+    width: 85% !important;
+    height: 55px;
+    font-size: 1.1em;
     margin-top: 5%;
   }
 
@@ -39,11 +51,6 @@ page-order-history {
     float: right;
     margin-top: 10%;
   }
-
-  // .content{
-  //   height: 90%;
-  //   overflow-y: scroll;
-  // }
 
   .toolbar-background {
     background-color: #488aff;
@@ -67,7 +74,7 @@ page-order-history {
     align-items: center;
     -webkit-transform: translateZ(0);
     transform: translateZ(0);
-  }
+}
 
   .lft-margin-3{
       margin-left: 3%;
@@ -103,26 +110,22 @@ page-order-history {
       max-width: 40px  !important;
   }
 
-  .rl-padding-3{
-    padding: 5% 3%;
-  }
-
-  .label-md {
-      margin: 0;
-  }
-
   .item-font{
-    padding: 3% 0;
-    font-size: 1em;
-    color: grey;
+    // padding: 3% 0;
+    font-size: 1.2em;
   }
 
-  .bt-padding{
-    padding-bottom: 2%;
+  .rl-padding-3{
+    padding: 0 3%;
+    margin-top: 6%;
   }
 
-  .blue-icon{
-    color:#488aff;
+  .input-font{
+    font-size: 0.8em;
+  }
+
+  .rl-padding-8{
+    padding: 0 8%;
   }
 
   .title-font{
@@ -135,4 +138,6 @@ page-order-history {
     color: white;
     text-align: left;
   }
+
+
 }
