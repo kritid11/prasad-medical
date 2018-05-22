@@ -55,12 +55,19 @@
         <ion-list>
           <div *ngFor="let item of items; let i = index" class="row item-font">
             <ion-label class="input-label"> {{item.item_name}} </ion-label>
-            <span class="rl-padding-3">{{item.item_quantity}}</span>
+            <ion-label class="input-label"> {{item.item_price}} &#8377; </ion-label>
+            <span class="input-label rl-padding-3">{{item.item_quantity}}</span>
           </div>
         </ion-list>
       </div>
 
       <hr>
+
+      <div class="row rl-padding-8 label-font">
+        <ion-label class="input-label"> Total </ion-label>
+        <ion-label class="input-label right-aligned"> {{total}} &#8377; </ion-label>
+      </div>
+
 
       <div class="center-items">
         <button ion-button secondary class="btn-blue" type="submit" (click)="gotToSelectMode()">Place Order</button>

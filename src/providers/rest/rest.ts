@@ -12,7 +12,7 @@ import { HttpParams } from '@angular/common/http';
 @Injectable()
 export class RestProvider {
   //apiUrl = 'https://jsonplaceholder.typicode.com';
-  apiUrl = 'https://f28e81e7.ngrok.io/prasad-medical/public';
+  apiUrl = 'https://2c2a7353.ngrok.io/prasad-medical/public';
 
   constructor(public http: HttpClient) {
     console.log('Hello RestProvider Provider');

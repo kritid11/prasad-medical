@@ -22,7 +22,7 @@ import { DatePipe } from '@angular/common'
 
 export class OrderDetailsPage {
 
-  items : Array<{name: string, quantity: number}> = [];
+  items : Array<{id: number, item_name: string, item_quantity: number, item_price : number}> = [];
   item: any;
   smallImgs: Array<string> = [];
   order : any;
@@ -95,11 +95,6 @@ export class OrderDetailsPage {
 
       this.storage.get('order_id').then((val) => {
         console.log('storage order_id', val);
-
-        /*todo: call api with userid and billno,
-        on success initialise px,items, status,placedDate,billno,mode  and show
-        else show error popup
-        */
 
         let loader = this.loadingCtrl.create({
           content: "getting Order Details..."

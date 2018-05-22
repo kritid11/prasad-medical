@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { AddItemPage} from './add-item';
 import { IonicPageModule } from 'ionic-angular';
-import { AutoCompleteModule } from 'ionic2-auto-complete';
+import { SelectSearchableModule } from 'ionic-select-searchable';
 
 @NgModule({
   declarations: [AddItemPage],
   imports: [
-    AutoCompleteModule,
-    IonicPageModule.forChild(AddItemPage)
+    IonicPageModule.forChild(AddItemPage),
+    SelectSearchableModule
   ],
   entryComponents: [AddItemPage]
 })

@@ -22,20 +22,22 @@ import { GoogleMaps } from "@ionic-native/google-maps";
 import { Toast } from '@ionic-native/toast';
 import { Geolocation } from '@ionic-native/geolocation';
 import { DatePipe } from '@angular/common';
-import { RecursiveSearchService } from '../providers/recursive-search-service';
-
+//import { enableProdMode } from '@angular/core';
+import { SelectSearchableModule } from 'ionic-select-searchable';
 
 @NgModule({
   declarations: [
     MyApp
   ],
   imports: [
+    SelectSearchableModule,
     BrowserModule,
     FormsModule,
     HttpClientModule,
     IonicStorageModule.forRoot(),
     IonicModule.forRoot(MyApp),
   ],
+  //enableProdMode();
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp
@@ -56,8 +58,7 @@ import { RecursiveSearchService } from '../providers/recursive-search-service';
     GoogleMaps,
     Toast,
     Geolocation,
-    DatePipe,
-    RecursiveSearchService
+    DatePipe
   ]
 })
 export class AppModule {}

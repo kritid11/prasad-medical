@@ -29,15 +29,19 @@
     <div class="label-font" *ngIf="items.length == 0">No Items added</div>
     <div class="label-font" *ngIf="items.length != 0">Your Items</div>
 
-    <ion-auto-complete [dataProvider]="recursiveSearchService"></ion-auto-complete>
+    <ion-item  class="input-width">
 
-    <div>
-      <ion-item class="input-width">
-        <ion-label floating class="input-label"> Enter Item name </ion-label>
-        <ion-input [(ngModel)]="itemName"
-          type="text"> </ion-input>
-      </ion-item>
-    </div>
+        <select-searchable
+            title="Item"
+            [(ngModel)]="masterItem"
+            [items]="masterItems"
+            itemValueField="id"
+            itemTextField="item_name"
+            [canSearch]="true"
+            (onChange)="itemChange($event)"
+            (onSearch)="searchPorts($event)">
+        </select-searchable>
+    </ion-item>
 
     <br><br>
     <div>
@@ -45,9 +49,12 @@
         <div *ngFor="let item of items; let i = index" class="row item-font">
           <ion-label class="input-label"> {{item.item_name}} </ion-label>
 
+          <ion-label class="input-label"> {{item.item_price}} &#8377; </ion-label>
+
           <ion-icon item-right name="add-circle" (click)="increaseQuanity(i)"></ion-icon>
-          <span class="rl-padding-3">{{item.item_quantity}}</span>
+          <span class="input-label rl-padding-3">{{item.item_quantity}}</span>
           <ion-icon item-right name="remove" (click)="decreaseQuanity(i)"></ion-icon>
+
         </div>
       </ion-list>
     </div>

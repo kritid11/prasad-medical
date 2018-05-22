@@ -4,16 +4,17 @@ import { NavController, NavParams, IonicPage } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { AlertController } from 'ionic-angular';
 import { LoadingController } from 'ionic-angular';
-import { RecursiveSearchService } from '../../providers/recursive-search-service';
+import { SelectSearchableComponent } from 'ionic-select-searchable';
+import { InfiniteScroll } from 'ionic-angular';
+import { Observable } from 'rxjs/Observable';
+import { delay } from 'rxjs/operators';
 
-/**
- * Generated class for the AddItemPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-
- //import { SelectModePage } from '../select-mode/select-mode';
+class Item {
+     public id: number;
+     public item_name: string;
+     public item_quantity: number;
+     public item_price: number;
+ }
 
 @IonicPage()
 @Component({
@@ -21,74 +22,125 @@ import { RecursiveSearchService } from '../../providers/recursive-search-service
   templateUrl: 'add-item.html',
 })
 export class AddItemPage {
+  masterItems: Item[];
+  masterItem: Item;
+  ports10Page = 2;
 
-  items : Array<{item_name: string, item_quantity: number, price : number}> = [];
+  items : Array<{id: number, item_name: string, item_quantity: number, item_price : number}> = [];
   item: any;
-  itemName: string = "";
-
+  //itemName: string = "";
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               private storage: Storage,
               private alertCtrl: AlertController,
-              public loadingCtrl: LoadingController,
-              public recursiveSearchService: RecursiveSearchService) {
+              public loadingCtrl: LoadingController) {
 
-    this.storage.get('itemsArray').then((val) => {
-        console.log('from storage itemsArray', val);
-        if(val == null || val == undefined){
-          this.storage.set('itemsArray',this.items);
-        }else{
-          this.items = val;
-        }
-    });
 
-    //getAllItems();
+    // this.masterItems = [
+    //   { id: 1, item_name: 'Tokai', item_quantity: 1, item_price: 10 },
+    //   { id: 2, item_name: 'Vladivostok', item_quantity: 1, item_price: 10 },
+    //   { id: 3, item_name: 'Navlakhi', item_quantity: 1, item_price: 20 },
+    //   { id: 4, item_name: 'Cayman Brac', item_quantity: 1, item_price: 10 },
+    //   { id: 1, item_name: 'Tokai', item_quantity: 1, item_price: 10 },
+    //   { id: 2, item_name: 'Vladivostok',item_quantity: 1, item_price: 10 },
+    //   { id: 3, item_name: 'Navlakhi',item_quantity: 1, item_price: 20 },
+    //   { id: 4, item_name: 'Cayman Brac',item_quantity: 1, item_price: 10 },
+    //   { id: 1, item_name: 'Tokai',item_quantity: 1, item_price: 10 },
+    //   { id: 2, item_name: 'Vladivostok',item_quantity: 1, item_price: 10 },
+    //   { id: 3, item_name: 'Navlakhi', item_quantity: 1,item_price: 20 },
+    //   { id: 4, item_name: 'Cayman Brac',item_quantity: 1, item_price: 10 }
+    // ];
 
+      this.storage.get('masterItemsArray').then((val) => {
+          console.log('from storage masterItemsArray', val);
+          this.masterItems = val;
+      });
+
+      this.storage.get('itemsArray').then((val) => {
+          console.log('from storage itemsArray', val);
+          if(val == null || val == undefined){
+            this.storage.set('itemsArray',this.items);
+          }else{
+            this.items = val;
+          }
+      });
   }
 
-  getAllItems(){
-    let loader = this.loadingCtrl.create({
-      content: "getting Item Master.."
-    });
-    loader.present();
+  getMorePorts(event: { component: SelectSearchableComponent, infiniteScroll: InfiniteScroll }) {
+        // Trere're no more ports - disable infinite scroll.
+        if (this.ports10Page > 3) {
+            event.infiniteScroll.enable(false);
+            return;
+        }
 
-    this.restProvider.getRequest('/getAllItems')
-    .then((result) => {
-      loader.dismiss();
-      console.log(result);
-      this.result = result;
-      if(this.result.statusKey == 200){
-        this.result = result;
-        this.items = this.result;
-      }else if(this.result.statusKey == 400){
-          this.presentAlert(this.result.message);
-      }else{
-          this.presentAlert('Something went wrong.. Please try again.');
-      }
-  },(err) => {
-     loader.dismiss();
-     console.log(err);
-     this.presentAlert('Something went wrong.. Please try again.');
-   });
+        this.getPortsAsync(this.ports10Page).subscribe(masterItems => {
+            event.component.items = event.component.items.concat(this.masterItems);
+            event.infiniteScroll.complete();
+            this.ports10Page++;
+        });
+    }
+
+    searchPorts(event: { component: SelectSearchableComponent, text: string }) {
+        let text = (event.text || '').trim().toLowerCase();
+
+        if (!text) {
+            event.component.items = [];
+            return;
+        } else if (event.text.length < 3) {
+            return;
+        }
+
+        event.component.isSearching = true;
+
+        this.getPortsAsync().subscribe(masterItems => {
+            event.component.items = this.masterItems.filter(masterItem => {
+                return masterItem.item_name.toLowerCase().indexOf(text) !== -1
+            });
+
+            event.component.isSearching = false;
+        });
+    }
+
+    getPorts(page: number = 1, size: number = 15): Item[] {
+       return this.masterItems.slice((page - 1) * size, ((page - 1) * size) + size);
+   }
+
+   getPortsAsync(page: number = 1, size: number = 15): Observable<Item[]> {
+       return new Observable<Item[]>(observer => {
+           observer.next(this.getPorts(page, size));
+           observer.complete()
+       }).pipe(delay(2000));
+   }
+
+    // portItemTemplate(port: Port) {
+    //     return `${port.name} (${port.country})`;
+    // }
+
+
+  itemChange(event: { component: SelectSearchableComponent, value: any }) {
+      console.log('item:', event.value);
+      this.masterItem = event.value;
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad AddItemPage');
   }
 
-  addItem(itemName){
-    if(this.itemName == ""){
-      this.presentAlert('Please enter the name of item');
+  addItem(){
+    if(this.masterItem == null){
+      this.presentAlert('Please select one item');
       return;
     }
 
     this.item = {
-      item_name: itemName,
-      item_quantity: 1
+      id : this.masterItem.id,
+      item_name: this.masterItem.item_name,
+      item_quantity: 1,
+      item_price: this.masterItem.item_price,
     };
     this.items.push(this.item);
-    this.itemName = "";
+    this.masterItem = null;
 
     //todo save it in Storage
     this.storage.set('itemsArray',this.items);

@@ -19,10 +19,11 @@ import { AlertController } from 'ionic-angular';
 
 export class ReviewOrderPage {
 
-  items : Array<{name: string, quantity: number}> = [];
+  items : Array<{id: number, item_name: string, item_quantity: number, item_price : number}> = [];
   item: any;
   smallImgs: Array<string> = [];
   order : any;
+  total : number = 0;
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
@@ -30,7 +31,7 @@ export class ReviewOrderPage {
               private alertCtrl: AlertController) {
 
     this.order = {billNumber: "", mode: "", placedDate: "", status: ""};
-    this.callGetOrderDetailsApi();
+    this.getOrderDetails();
   }
 
   ionViewDidLoad() {
@@ -43,20 +44,24 @@ export class ReviewOrderPage {
     this.navCtrl.push('SelectModePage');
   }
 
-  callGetOrderDetailsApi(){
+  getOrderDetails(){
     this.storage.get('smallImgs').then((val) => {
       console.log('storage smallImgs', val);
 
       this.storage.get('itemsArray').then((val1) => {
         console.log('storage itemsArray', val1);
 
-        /*todo: call api with userid and billno,
-        on success initialise px,items, status,placedDate,billno,mode  and show
-        else show error popup
-        */
+        if(val1 != null && val1 != undefined){
+          this.items = val1;
+        }
 
-        this.items = val1;
-        this.smallImgs = val;
+        if(val != null && val != undefined){
+          this.smallImgs = val;
+        }
+
+        for(var i=0; i<this.items.length; i++){
+          this.total = this.total + (this.items[i].item_quantity * this.items[i].item_price);
+        }
 
       });
     });

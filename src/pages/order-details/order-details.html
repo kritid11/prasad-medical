@@ -88,6 +88,7 @@
         <ion-list>
           <div *ngFor="let item of items; let i = index" class="row item-font">
             <ion-label class="input-label"> {{item.item_name}} </ion-label>
+            <ion-label class="input-label"> {{item.item_price}} &#8377; </ion-label>
             <span class="rl-padding-3">{{item.item_quantity}}</span>
           </div>
         </ion-list>

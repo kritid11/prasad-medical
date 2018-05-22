@@ -26,14 +26,14 @@ page-review-order {
 
   .label-font{
     font-size: 1.2em !important;
-    color: #488aff !important;
+    color: #ef680c !important;
     margin-bottom: 5%;
 
   }
 
   .header-label-font{
     font-size: 1.4em !important;
-    color: #488aff !important;
+    color: #ef680c !important;
     font-weight: bold;
     margin-bottom: 5%;
   }
@@ -53,7 +53,7 @@ page-review-order {
   }
 
   .toolbar-background {
-    background-color: #488aff;
+    background-color: #ef680c;
   }
 
 
@@ -90,7 +90,7 @@ page-review-order {
   .frame {
     height: 80px;
     width: 80px;
-    border: 1px solid #488aff;
+    border: 1px solid #ef680c;
     white-space: nowrap;
     text-align: center;
     border-radius: 50%;
@@ -117,7 +117,7 @@ page-review-order {
 
   .rl-padding-3{
     padding: 0 3%;
-    margin-top: 6%;
+    margin-top: 5%;
   }
 
   .input-font{
@@ -137,6 +137,10 @@ page-review-order {
     font-size: 0.6em !important;
     color: white;
     text-align: left;
+  }
+
+  .right-aligned{
+    text-align: right;
   }
 
 
