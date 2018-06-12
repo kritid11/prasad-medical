@@ -184,7 +184,7 @@ export class AddPrescriptionPage {
 
    const fileTransfer: FileTransferObject  = this.transfer.create();
 
-   fileTransfer.upload(targetPath, 'https://2c2a7353.ngrok.io/prasad-medical/public/addPrescription', options)
+   fileTransfer.upload(targetPath, 'https://ede354dd.ngrok.io/prasad-medical/public/addPrescription', options)
      .then((data) => {
        console.log('data:',data);
        loader.dismiss();

@@ -116,6 +116,7 @@ export class MyAccountPage {
                this.result = result;
 
                if(this.result.statusKey == 200){
+                 this.storage.set('mobile', this.accountForm.value['mobile']);
                  this.presentToast(this.result.message);
                }else if(this.result.statusKey == 400){
                  this.presentAlert(this.result.message);
