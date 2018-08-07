@@ -53,14 +53,14 @@ export class SplashPage {
 
   callSearchMedicines(){
 
-      // let loader = this.loadingCtrl.create({
-      //   content: ""
-      // });
-      // loader.present();
+      let loader = this.loadingCtrl.create({
+        content: "Loading... Please wait"
+      });
+      loader.present();
 
       this.restProvider.getRequest('/searchMedicines', '')
       .then((result) => {
-        //loader.dismiss();
+        loader.dismiss();
         console.log(result);
         this.result = result;
         if(this.result.statusKey == 200){
@@ -73,7 +73,7 @@ export class SplashPage {
             this.presentAlert('Something went wrong.. Please try again.');
         }
     },(err) => {
-       //loader.dismiss();
+       loader.dismiss();
        console.log(err);
        this.presentAlert('Something went wrong.. Please try again.');
      });
@@ -95,5 +95,7 @@ export class SplashPage {
      });
      alert.present();
    };
+
+
 
 }

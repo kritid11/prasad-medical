@@ -37,7 +37,7 @@
         No Prescriptions added
       </div>
       <div class="rl-padding-8" *ngIf="smallImgs.length != 0">
-        <div class="label-font">Your Prescriptions</div>
+        <div class="label-font bt-margin-3">Your Prescriptions</div>
         <ion-list>
           <button ion-item *ngFor="let smallImg of smallImgs; let i = index"  (click)="deletePrescription(i)">
             <!-- <ion-icon name="close" class="cross-over-img"></ion-icon> -->
@@ -51,23 +51,28 @@
         No items added
       </div>
       <div class="rl-padding-8" *ngIf="items.length != 0">
-        <div class="label-font">Your Items</div>
+        <div class="label-font bt-margin-3">Your Items</div>
+
         <ion-list>
-          <div *ngFor="let item of items; let i = index" class="row item-font">
-            <ion-label class="input-label"> {{item.item_name}} </ion-label>
-            <ion-label class="input-label"> {{item.item_price}} &#8377; </ion-label>
-            <span class="input-label rl-padding-3">{{item.item_quantity}}</span>
+          <div *ngFor="let item of items; let i = index" class="item-font">
+            <ion-label class="blue-font">Item:  {{item.item_name}} </ion-label>
+            <ion-label class="">Amount: {{item.item_price}} &#8377; </ion-label>
+            <span class="">Quantity: {{item.item_quantity}}</span>
           </div>
         </ion-list>
+
       </div>
 
       <hr>
 
-      <div class="row rl-padding-8 label-font">
-        <ion-label class="input-label"> Total </ion-label>
-        <ion-label class="input-label right-aligned"> {{total}} &#8377; </ion-label>
+      <div class="row rl-padding-8 label-font" *ngIf="total!=0">
+        <ion-label class=""> Total </ion-label>
+        <ion-label class="right-aligned blue-font" > {{total | number : '1.2-2' }} &#8377; </ion-label>
       </div>
 
+      <div class="rl-padding-8 label-font" *ngIf="total==0">
+        <ion-label class="blue-font" > *Amount will be told at the time of Delivery or Pickup* </ion-label>
+      </div>
 
       <div class="center-items">
         <button ion-button secondary class="btn-blue" type="submit" (click)="gotToSelectMode()">Place Order</button>

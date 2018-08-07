@@ -94,3 +94,19 @@
   position: absolute;
   padding: 7%;
 }
+
+.bar-button-default-ios, .bar-button-default.bar-button-ios-default, .bar-button-clear-ios-default {
+    color: white !important;
+    background-color: transparent;
+}
+
+.toolbar-ios {
+    padding: 4px;
+    padding-left: 4px;
+    padding-right: 4px;
+    min-height: 75px !important;
+}
+
+.blue-font{
+  color: #338DFF;
+}

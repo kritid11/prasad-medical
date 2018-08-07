@@ -25,6 +25,8 @@ export class ReviewOrderPage {
   order : any;
   total : number = 0;
 
+
+
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               private storage: Storage,
@@ -63,6 +65,9 @@ export class ReviewOrderPage {
           this.total = this.total + (this.items[i].item_quantity * this.items[i].item_price);
         }
 
+        this.storage.set('amountTotal', this.total);
+        
+
       });
     });
   }
@@ -83,4 +88,6 @@ export class ReviewOrderPage {
     });
     alert.present();
   };
+
+
 }

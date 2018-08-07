@@ -63,7 +63,7 @@ export class OrderHistoryPage {
         this.showOrders.splice(0);
         this.order = {
           id: this.orders[i].id,
-          created_at: this.orders[i].created_at,
+          created_at: this.orders[i].created_at.replace(/\s/g, "T"),
           order_mode: this.orders[i].order_mode,
           order_status: this.orders[i].order_status
         }
@@ -84,7 +84,7 @@ export class OrderHistoryPage {
       }
       this.order = {
         id: this.orders[i].id,
-        created_at: this.orders[i].created_at,
+        created_at: this.orders[i].created_at.replace(/\s/g, "T"),
         order_mode: this.orders[i].order_mode,
         order_status: this.orders[i].order_status
       }

@@ -24,6 +24,7 @@ import { Geolocation } from '@ionic-native/geolocation';
 import { DatePipe } from '@angular/common';
 //import { enableProdMode } from '@angular/core';
 import { SelectSearchableModule } from 'ionic-select-searchable';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
 
 @NgModule({
   declarations: [
@@ -58,7 +59,8 @@ import { SelectSearchableModule } from 'ionic-select-searchable';
     GoogleMaps,
     Toast,
     Geolocation,
-    DatePipe
+    DatePipe,
+    InAppBrowser
   ]
 })
 export class AppModule {}

@@ -7,21 +7,21 @@
 	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
 	<string>ca-app-pub-3940256099942544/4411468910</string>
 	<key>CLIENT_ID</key>
-	<string>334302609529-vjm5l4j7k8509itj8ekjve7oo8ngehch.apps.googleusercontent.com</string>
+	<string>430371256560-unbttdtfql5025r9f9r0r31i4d075vvi.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.334302609529-vjm5l4j7k8509itj8ekjve7oo8ngehch</string>
+	<string>com.googleusercontent.apps.430371256560-unbttdtfql5025r9f9r0r31i4d075vvi</string>
 	<key>API_KEY</key>
-	<string>AIzaSyClQ8rkujIBJKcudkterdwdkVXRAJZYoJM</string>
+	<string>AIzaSyCTJflXhjdy_sI58_YQ-Rtf4SXmb0heYaY</string>
 	<key>GCM_SENDER_ID</key>
-	<string>334302609529</string>
+	<string>430371256560</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>project.google.login</string>
+	<string>Prasad.Medical.App</string>
 	<key>PROJECT_ID</key>
-	<string>carbide-server-203915</string>
+	<string>prasad-medical-20ba2</string>
 	<key>STORAGE_BUCKET</key>
-	<string>carbide-server-203915.appspot.com</string>
+	<string>prasad-medical-20ba2.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<true></true>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -33,8 +33,8 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:334302609529:ios:0335a539d7bbdfb8</string>
+	<string>1:430371256560:ios:a906157aa8dcc1b2</string>
 	<key>DATABASE_URL</key>
-	<string>https://carbide-server-203915.firebaseio.com</string>
+	<string>https://prasad-medical-20ba2.firebaseio.com</string>
 </dict>
 </plist>

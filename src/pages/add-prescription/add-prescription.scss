@@ -16,9 +16,10 @@ page-add-prescription {
   }
 
   .label-font{
-    font-size: 1.2em !important;
+    font-size: 1.4em !important;
     color: #ef680c !important;
     margin-bottom: 5%;
+    font-weight: bold;
 
   }
 
@@ -41,7 +42,7 @@ page-add-prescription {
   }
 
   .content{
-    height: 70%;
+    // height: 70%;
     overflow-y: scroll;
   }
 
@@ -106,6 +107,7 @@ page-add-prescription {
   .title-font{
     font-size: 0.8em !important;
     color: white !important;
+    text-align: left;
   }
 
   .desc-font{

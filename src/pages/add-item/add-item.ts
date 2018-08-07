@@ -36,22 +36,6 @@ export class AddItemPage {
               private alertCtrl: AlertController,
               public loadingCtrl: LoadingController) {
 
-
-    // this.masterItems = [
-    //   { id: 1, item_name: 'Tokai', item_quantity: 1, item_price: 10 },
-    //   { id: 2, item_name: 'Vladivostok', item_quantity: 1, item_price: 10 },
-    //   { id: 3, item_name: 'Navlakhi', item_quantity: 1, item_price: 20 },
-    //   { id: 4, item_name: 'Cayman Brac', item_quantity: 1, item_price: 10 },
-    //   { id: 1, item_name: 'Tokai', item_quantity: 1, item_price: 10 },
-    //   { id: 2, item_name: 'Vladivostok',item_quantity: 1, item_price: 10 },
-    //   { id: 3, item_name: 'Navlakhi',item_quantity: 1, item_price: 20 },
-    //   { id: 4, item_name: 'Cayman Brac',item_quantity: 1, item_price: 10 },
-    //   { id: 1, item_name: 'Tokai',item_quantity: 1, item_price: 10 },
-    //   { id: 2, item_name: 'Vladivostok',item_quantity: 1, item_price: 10 },
-    //   { id: 3, item_name: 'Navlakhi', item_quantity: 1,item_price: 20 },
-    //   { id: 4, item_name: 'Cayman Brac',item_quantity: 1, item_price: 10 }
-    // ];
-
       this.storage.get('masterItemsArray').then((val) => {
           console.log('from storage masterItemsArray', val);
           this.masterItems = val;
@@ -87,9 +71,10 @@ export class AddItemPage {
         if (!text) {
             event.component.items = [];
             return;
-        } else if (event.text.length < 3) {
-            return;
         }
+        //  else if (event.text.length < 3) {
+        //     return;
+        // }
 
         event.component.isSearching = true;
 
