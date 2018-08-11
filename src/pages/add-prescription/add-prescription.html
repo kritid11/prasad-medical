@@ -3,18 +3,18 @@
 
     <ion-title>
       <ion-grid>
-         <ion-row>
+        <ion-row>
 
-            <img class="circle-pic"
-              src="assets/imgs/logo.png">
+          <img class="circle-pic"
+          src="assets/imgs/logo.png">
 
-            <ion-col>
-              <div class="col-sm-6 col-xs-6 col-md-6 lft-margin-3">
-                <div class="title-font">PRASAD MEDICAL</div>
-                <div class="desc-font">And General stores,</div>
-                <div class="desc-font">Pratap Nagar, Nagpur</div>
-              </div>
-            </ion-col>
+          <ion-col>
+            <div class="col-sm-6 col-xs-6 col-md-6 lft-margin-3">
+              <div class="title-font">PRASAD MEDICAL</div>
+              <div class="desc-font">And General stores,</div>
+              <div class="desc-font">Pratap Nagar, Nagpur</div>
+            </div>
+          </ion-col>
         </ion-row>
       </ion-grid>
     </ion-title>
@@ -29,26 +29,32 @@
   </ion-navbar>
 </ion-header>
 
-
 <ion-content padding >
-  <div>
-    <div class="label-font" *ngIf="smallImgs.length == 0">No Prescriptions added</div>
-    <div class="label-font" *ngIf="smallImgs.length != 0">Your Prescriptions</div>
-    <ion-list>
-      <button ion-item *ngFor="let smallImg of smallImgs; let i = index" (click)="presentDeleteConfirm(i)">
-        <ion-icon name="close" class="cross-over-img"></ion-icon>
-        <img [src]="smallImg" *ngIf="smallImg" class="circle-pic">
-      </button>
-    </ion-list>
-  </div>
-
-  <div class="center-items footer">
-    <div>
-      <button ion-button secondary (click)="addPrescription()" class="btn-blue">Add Prescription</button>
+  <div class="wrapper">
+    <div class="header1">
+      <div class="label-font header1" *ngIf="smallImgs.length == 0">No Prescriptions added</div>
+      <div class="label-font header1" *ngIf="smallImgs.length != 0">Your Prescriptions</div>
     </div>
-    <div>
-      <button ion-button secondary (click)="goToAddItemPage()" class="btn-blue">Next</button>
-    </div>
-  </div>
 
+    <div class="content">
+      <div class="inner">
+        <ion-list>
+          <button ion-item *ngFor="let smallImg of smallImgs; let i = index" (click)="presentDeleteConfirm(i)">
+            <ion-icon name="close" class="cross-over-img"></ion-icon>
+            <img [src]="smallImg" *ngIf="smallImg" class="circle-pic">
+          </button>
+        </ion-list>
+      </div>
+    </div>
+
+    <div class="center-items footer">
+      <div>
+        <button ion-button secondary (click)="addPrescription()" class="btn-blue">Add Prescription</button>
+      </div>
+      <div>
+        <button ion-button secondary (click)="goToAddItemPage()" class="btn-blue">Next</button>
+      </div>
+    </div>
+
+  </div>
 </ion-content>

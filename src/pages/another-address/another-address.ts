@@ -101,16 +101,7 @@ export class AnotherAddressPage {
   }
 
   deliverToThisAddress(){
-    //this.callPlaceOrderApi();
-    this.storage.get('amountTotal').then((val1) => {
-      console.log('storage amountTotal', val1);
-      if(val1 == undefined || val1 == 0){
-        this.txnId = null;
-        this.callPlaceOrderApi();
-      }else{
-        this.payWithPayMoney();
-      }
-    });
+    this.presentRadioPrompt();
   }
 
   callPlaceOrderApi(){
@@ -137,7 +128,8 @@ export class AnotherAddressPage {
                "pincode": this.addressForm.value['pincode']
              },
              "email" : this.addressForm.value['email'],
-             "mobile" : this.addressForm.value['mobile']
+             "mobile" : this.addressForm.value['mobile'],
+             "txn_id"  : this.txnId
           };
 
           let loader = this.loadingCtrl.create({
@@ -254,7 +246,7 @@ getAddress() {
             };
             var close;
             var closeLoop;
-            var amt = val1;
+            var amt = 1;//val1;
             var name =  val2;
             var email = val3;
             var mobile = val4;
@@ -348,5 +340,51 @@ getAddress() {
       let target = "_blank";
       return this.theInAppBrowser.create(url,target,this.options);
   }
+
+  presentRadioPrompt() {
+    let prompt = this.alertCtrl.create({
+      title: 'Prasad Medical',
+      message: 'Please select Payment mode ',
+      inputs : [
+        {
+          type:'radio',
+          label:'NetBanking/Credit Cards/Debit Cards',
+          value:'PG'
+        },
+        {
+          type:'radio',
+          label:'Cash on Pickup/Delivery',
+          value:'COD'
+        }],
+        buttons : [
+          {
+            text: "Cancel",
+            handler: data => {
+              console.log("cancel clicked");
+            }
+          },
+          {
+            text: "Ok",
+            handler: data => {
+              console.log("ok clicked data: ",data);
+              if(data == 'PG'){
+                this.storage.get('amountTotal').then((val1) => {
+                  console.log('storage amountTotal', val1);
+                  if(val1 == undefined || val1 == 0){
+                    this.txnId = null;
+                    this.callPlaceOrderApi();
+                  }else{
+                    this.payWithPayMoney();
+                  }
+                });
+              }else{
+                this.txnId = null;
+                this.callPlaceOrderApi();
+              }
+            }
+          }]
+        });
+        prompt.present();
+      }
 
 }

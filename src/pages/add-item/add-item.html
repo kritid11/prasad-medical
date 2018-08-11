@@ -3,17 +3,17 @@
 
     <ion-title>
       <ion-grid>
-         <ion-row>
+        <ion-row>
 
-            <img class="circle-pic"
-              src="assets/imgs/logo.png">
+          <img class="circle-pic"
+          src="assets/imgs/logo.png">
 
-            <ion-col>
-              <div class="col-sm-6 col-xs-6 col-md-6 lft-margin-3">
-                <div class="title-font">PRASAD MEDICAL</div>
-                <div class="desc-font">And General stores,</div>
-                <div class="desc-font">Pratap Nagar, Nagpur</div>
-              </div>
+          <ion-col>
+            <div class="col-sm-6 col-xs-6 col-md-6 lft-margin-3">
+              <div class="title-font">PRASAD MEDICAL</div>
+              <div class="desc-font">And General stores,</div>
+              <div class="desc-font">Pratap Nagar, Nagpur</div>
+            </div>
           </ion-col>
         </ion-row>
       </ion-grid>
@@ -24,33 +24,36 @@
 
 
 <ion-content padding >
+  <div class="wrapper">
+    <div class="header1">
+      <div class="label-font" *ngIf="items.length == 0">No Items added</div>
+      <div class="label-font" *ngIf="items.length != 0">Your Items</div>
 
-  <div class="">
-    <div class="label-font" *ngIf="items.length == 0">No Items added</div>
-    <div class="label-font" *ngIf="items.length != 0">Your Items</div>
-
-    <ion-item  class="input-width">
+      <ion-item  class="input-width">
 
         <select-searchable
-            title="Item"
-            [(ngModel)]="masterItem"
-            [items]="masterItems"
-            itemValueField="id"
-            itemTextField="item_name"
-            [canSearch]="true"
-            (onChange)="itemChange($event)"
-            placeholder="enter item name"
-            (onSearch)="searchPorts($event)">
-        </select-searchable>
+        title="Item"
+        [(ngModel)]="masterItem"
+        [items]="masterItems"
+        itemValueField="id"
+        itemTextField="item_name"
+        [canSearch]="true"
+        (onChange)="itemChange($event)"
+        placeholder="enter item name"
+        (onSearch)="searchPorts($event)">
+      </select-searchable>
     </ion-item>
+    <span class="lft-margin-3 blue-font">Please enter item name to search</span>
+  </div>
 
-    <br><br>
-    <div>
-      <ion-list>
+
+  <div class="content">
+    <div class="inner">
+      <ion-list class="top-margin-5">
         <div *ngFor="let item of items; let i = index" class="item-font">
-          <ion-label class="blue-font">Item: {{item.item_name}} </ion-label>
+          <div class="blue-font">Item: {{item.item_name}} </div>
 
-          <ion-label class="">Amount: {{item.item_price}} &#8377; </ion-label>
+          <div class="">Amount: {{item.item_price}} &#8377; </div>
 
           <span class="">Quantity: </span>
           <ion-icon item-right name="add-circle" (click)="increaseQuanity(i)"></ion-icon>
@@ -62,6 +65,7 @@
     </div>
   </div>
 
+
   <div class="center-items footer" >
     <div>
       <button ion-button secondary (click)="addItem(itemName)" class="btn-blue">Add Item</button>
@@ -70,5 +74,5 @@
       <button ion-button secondary (click)="goToReviewOrder()" class="btn-blue">Place Order</button>
     </div>
   </div>
-
+</div>
 </ion-content>

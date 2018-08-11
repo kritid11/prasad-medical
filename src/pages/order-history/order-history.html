@@ -47,9 +47,9 @@
     <div>
       <ion-list>
         <ion-item *ngFor="let order of showOrders; let i = index" class="item-font" (click)="goToOrderDetailsPage(i)">
-          <div class="bt-padding"> {{order.order_mode}} </div>
-          <div class="bt-padding"> {{order.created_at | date : 'dd-MM-yyyy'}} </div>
-          <div class="bt-padding"> {{order.order_status}} </div>
+          <div class="bt-padding blue-font"> {{order.order_mode}} </div>
+          <div class="bt-padding orange-font"> {{order.created_at | date : 'dd-MM-yyyy'}} </div>
+          <div class="bt-padding orange-font"> {{order.order_status}} </div>
         </ion-item>
       </ion-list>
     </div>

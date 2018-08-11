@@ -29,7 +29,7 @@
 </ion-header>
 
 <ion-content padding>
-  <div>
+  <div class="blue-font">
       <ion-grid>
           <ion-row>
               <ion-col>
@@ -86,11 +86,11 @@
       <div class="rl-padding-8" *ngIf="items.length != 0">
         <div class="label-font">Your Items</div>
         <ion-list>
-          <div *ngFor="let item of items; let i = index" class="row item-font">
-            <ion-label class="input-label"> {{item.item_name}} </ion-label>
-            <ion-label class="input-label"> {{item.item_price}} &#8377; </ion-label>
-            <span class="rl-padding-3">{{item.item_quantity}}</span>
-          </div>
+          <div *ngFor="let item of items; let i = index" class="item-font bt-margin-3">
+            <div class="blue-font">Item:  {{item.item_name}} </div>
+            <div class="">Amount: {{item.item_price}} &#8377; </div>
+            <div class="">Quantity: {{item.item_quantity}}</div>
+          </div><br>
         </ion-list>
       </div>
 

@@ -33,11 +33,11 @@
 
       <div class="header-label-font">Review Order</div>
       <br>
-      <div class="rl-padding-8 label-font" *ngIf="smallImgs.length == 0">
+      <div class="rl-padding-8 label-font row" *ngIf="smallImgs.length == 0">
         No Prescriptions added
       </div>
       <div class="rl-padding-8" *ngIf="smallImgs.length != 0">
-        <div class="label-font bt-margin-3">Your Prescriptions</div>
+        <div class="label-font bt-margin-3 row">Your Prescriptions</div>
         <ion-list>
           <button ion-item *ngFor="let smallImg of smallImgs; let i = index"  (click)="deletePrescription(i)">
             <!-- <ion-icon name="close" class="cross-over-img"></ion-icon> -->
@@ -46,19 +46,19 @@
         </ion-list>
       </div>
 
-      <hr>
-      <div class="rl-padding-8 label-font" *ngIf="items.length == 0">
+      <hr><br>
+      <div class="rl-padding-8 label-font row" *ngIf="items.length == 0">
         No items added
       </div>
       <div class="rl-padding-8" *ngIf="items.length != 0">
-        <div class="label-font bt-margin-3">Your Items</div>
+        <div class="label-font bt-margin-3 row">Your Items</div>
 
         <ion-list>
-          <div *ngFor="let item of items; let i = index" class="item-font">
-            <ion-label class="blue-font">Item:  {{item.item_name}} </ion-label>
-            <ion-label class="">Amount: {{item.item_price}} &#8377; </ion-label>
-            <span class="">Quantity: {{item.item_quantity}}</span>
-          </div>
+          <div *ngFor="let item of items; let i = index" class="item-font bt-margin-3">
+            <div class="blue-font">Item:  {{item.item_name}} </div>
+            <div class="">Amount: {{item.item_price}} &#8377; </div>
+            <div class="">Quantity: {{item.item_quantity}}</div>
+          </div><br>
         </ion-list>
 
       </div>
@@ -70,8 +70,8 @@
         <ion-label class="right-aligned blue-font" > {{total | number : '1.2-2' }} &#8377; </ion-label>
       </div>
 
-      <div class="rl-padding-8 label-font" *ngIf="total==0">
-        <ion-label class="blue-font" > *Amount will be told at the time of Delivery or Pickup* </ion-label>
+      <div class="rl-padding-8 item-font" *ngIf="total==0">
+        <span class="blue-font" > *Amount will be told at the time of Delivery or Pickup* </span>
       </div>
 
       <div class="center-items">

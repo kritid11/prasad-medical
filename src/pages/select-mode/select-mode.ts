@@ -16,21 +16,21 @@ import jsSHA from 'jssha';
 export class SelectModePage {
 
   options : InAppBrowserOptions = {
-      location : 'yes',//Or 'no'
-      hidden : 'no', //Or  'yes'
-      clearcache : 'yes',
-      clearsessioncache : 'yes',
-      zoom : 'yes',//Android only ,shows browser zoom controls
-      hardwareback : 'yes',
-      mediaPlaybackRequiresUserAction : 'no',
-      shouldPauseOnSuspend : 'no', //Android only
-      closebuttoncaption : 'Close', //iOS only
-      disallowoverscroll : 'no', //iOS only
-      toolbar : 'yes', //iOS only
-      enableViewportScale : 'no', //iOS only
-      allowInlineMediaPlayback : 'no',//iOS only
-      presentationstyle : 'pagesheet',//iOS only
-      fullscreen : 'yes',//Windows only
+    location : 'yes',//Or 'no'
+    hidden : 'no', //Or  'yes'
+    clearcache : 'yes',
+    clearsessioncache : 'yes',
+    zoom : 'yes',//Android only ,shows browser zoom controls
+    hardwareback : 'yes',
+    mediaPlaybackRequiresUserAction : 'no',
+    shouldPauseOnSuspend : 'no', //Android only
+    closebuttoncaption : 'Close', //iOS only
+    disallowoverscroll : 'no', //iOS only
+    toolbar : 'yes', //iOS only
+    enableViewportScale : 'no', //iOS only
+    allowInlineMediaPlayback : 'no',//iOS only
+    presentationstyle : 'pagesheet',//iOS only
+    fullscreen : 'yes',//Windows only
   };
 
   result : any;
@@ -53,12 +53,19 @@ export class SelectModePage {
 
     }
 
-    gotToConfirmOrder(){
+    goToConfirmOrder(){
       this.presentPickupConfirm();
     }
 
     goToSetAddress(){
-      this.navCtrl.push('DeliveryAddressPage');
+      this.storage.get('amountTotal').then((val) => {
+        console.log('storage amountTotal', val);
+        if(val < 1000){
+          this.presentAlert('Medicine cannot be delivered if the order amount is below Rs.1000');
+        }else{
+          this.navCtrl.push('DeliveryAddressPage');
+        }
+      });
     }
 
     goToTermsAndConditionsPage(){
@@ -80,17 +87,7 @@ export class SelectModePage {
           {
             text: 'Yes',
             handler: () => {
-              //this.callPlaceOrderApi();
-              this.storage.get('amountTotal').then((val1) => {
-                console.log('storage amountTotal', val1);
-                if(val1 == undefined || val1 == 0){
-                  this.txnId = null;
-                  this.callPlaceOrderApi();
-                }else{
-                  this.payWithPayMoney();
-                }
-              });
-
+              this.presentRadioPrompt();
 
             }
           }
@@ -209,23 +206,23 @@ export class SelectModePage {
 
             this.paymentString = `
             <html>
-              <body>
-                <form action="${this.restProvider.getProductionUrl()}" method="post" id="payu_form">
-                  <input type="hidden" name="firstname" value="${name}"/>
-                  <input type="hidden" name="email" value="${email}"/>
-                  <input type="hidden" name="phone" value="${mobile}"/>
-                  <input type="hidden" name="surl" value="${this.surl}"/>
-                  <input type="hidden" name="furl" value="${this.furl}"/>
-                  <input type="hidden" name="key" value="${this.restProvider.getKey()}"/>
-                  <input type="hidden" name="hash" value="${encrypttext}"/>
-                  <input type="hidden" name="txnid" value="${this.txnId}"/>
-                  <input type="hidden" name="productinfo" value="${productinfo}"/>
-                  <input type="hidden" name="amount" value="${amt}"/>
-                  <input type="hidden" name="service_provider" value="${this.restProvider.getServiceProvider()}"/>
-                  <button type="submit" value="submit" #submitBtn></button>
-                </form>
-                <script type="text/javascript">document.getElementById("payu_form").submit();</script>
-              </body>
+            <body>
+            <form action="${this.restProvider.getProductionUrl()}" method="post" id="payu_form">
+            <input type="hidden" name="firstname" value="${name}"/>
+            <input type="hidden" name="email" value="${email}"/>
+            <input type="hidden" name="phone" value="${mobile}"/>
+            <input type="hidden" name="surl" value="${this.surl}"/>
+            <input type="hidden" name="furl" value="${this.furl}"/>
+            <input type="hidden" name="key" value="${this.restProvider.getKey()}"/>
+            <input type="hidden" name="hash" value="${encrypttext}"/>
+            <input type="hidden" name="txnid" value="${this.txnId}"/>
+            <input type="hidden" name="productinfo" value="${productinfo}"/>
+            <input type="hidden" name="amount" value="${amt}"/>
+            <input type="hidden" name="service_provider" value="${this.restProvider.getServiceProvider()}"/>
+            <button type="submit" value="submit" #submitBtn></button>
+            </form>
+            <script type="text/javascript">document.getElementById("payu_form").submit();</script>
+            </body>
             </html>`;
 
             console.log(this.paymentString);
@@ -256,18 +253,18 @@ export class SelectModePage {
   }
 
   openWithSystemBrowser(url : string){
-      let target = "_system";
-      return this.theInAppBrowser.create(url,target,this.options);
+    let target = "_system";
+    return this.theInAppBrowser.create(url,target,this.options);
   }
 
   openWithInAppBrowser(url : string){
-      let target = "_blank";
-      return this.theInAppBrowser.create(url,target,this.options);
+    let target = "_blank";
+    return this.theInAppBrowser.create(url,target,this.options);
   }
 
   openWithCordovaBrowser(url : string){
-      let target = "_self";
-      return this.theInAppBrowser.create(url,target,this.options);
+    let target = "_self";
+    return this.theInAppBrowser.create(url,target,this.options);
   }
 
   presentAlert(msg) {
@@ -310,4 +307,50 @@ export class SelectModePage {
     alert.present();
   }
 
-}
+  presentRadioPrompt() {
+    let prompt = this.alertCtrl.create({
+      title: 'Prasad Medical',
+      message: 'Please select Payment mode ',
+      inputs : [
+        {
+          type:'radio',
+          label:'NetBanking/Credit Cards/Debit Cards',
+          value:'PG'
+        },
+        {
+          type:'radio',
+          label:'Cash on Pickup/Delivery',
+          value:'COD'
+        }],
+        buttons : [
+          {
+            text: "Cancel",
+            handler: data => {
+              console.log("cancel clicked");
+            }
+          },
+          {
+            text: "Ok",
+            handler: data => {
+              console.log("ok clicked data: ",data);
+              if(data == 'PG'){
+                this.storage.get('amountTotal').then((val1) => {
+                  console.log('storage amountTotal', val1);
+                  if(val1 == undefined || val1 == 0){
+                    this.txnId = null;
+                    this.callPlaceOrderApi();
+                  }else{
+                    this.payWithPayMoney();
+                  }
+                });
+              }else{
+                this.txnId = null;
+                this.callPlaceOrderApi();
+              }
+            }
+          }]
+        });
+        prompt.present();
+      }
+
+    }

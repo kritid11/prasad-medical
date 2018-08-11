@@ -72,9 +72,9 @@ export class AddItemPage {
             event.component.items = [];
             return;
         }
-        //  else if (event.text.length < 3) {
-        //     return;
-        // }
+         else if (event.text.length < 3) {
+            return;
+        }
 
         event.component.isSearching = true;
 
@@ -149,17 +149,11 @@ export class AddItemPage {
   goToReviewOrder(){
     this.storage.get('pxIdArray').then((val) => {
       console.log('storage pxIdArray', val);
-
-      this.storage.get('itemsArray').then((val1) => {
-        console.log('storage itemsArray', val1);
-
-        if(val1.length != 0 || val.length != 0){
-          this.navCtrl.push('ReviewOrderPage');
-        }else{
-          this.presentAlert('Please add atleast one item or one prescrition to place order');
-        }
-
-      });
+      if(val.length != 0){
+        this.navCtrl.push('ReviewOrderPage');
+      }else{
+        this.presentAlert('Please add atleast one Prescrition to proceed');
+      }
     });
   }
 

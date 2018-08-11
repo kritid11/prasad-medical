@@ -198,7 +198,6 @@ export class AddPrescriptionPage {
           this.storage.set('pxIdArray',this.pxIdArray);
           this.smallImgs.push(this.result.data.prescription);
           this.storage.set('smallImgs',this.smallImgs);
-          //this.imageFileName = this.result.data.prescription; //"http://192.168.0.7:8080/static/images/ionicfile.jpg"
 
        }else{
          this.presentAlert(this.result.message);
@@ -272,7 +271,14 @@ export class AddPrescriptionPage {
  }
 
  goToAddItemPage(){
-   this.navCtrl.push('AddItemPage');
+   this.storage.get('pxIdArray').then((val) => {
+     console.log('storage pxIdArray', val);
+     if(val.length != 0){
+       this.navCtrl.push('AddItemPage');
+     }else{
+       this.presentAlert('Please add atleast one Prescrition to proceed');
+     }
+   });
  }
 
  presentDeleteConfirm(index) {
