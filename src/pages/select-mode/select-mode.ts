@@ -58,14 +58,8 @@ export class SelectModePage {
     }
 
     goToSetAddress(){
-      this.storage.get('amountTotal').then((val) => {
-        console.log('storage amountTotal', val);
-        if(val < 1000){
-          this.presentAlert('Medicine cannot be delivered if the order amount is below Rs.1000');
-        }else{
-          this.navCtrl.push('DeliveryAddressPage');
-        }
-      });
+      this.navCtrl.push('DeliveryAddressPage');
+      
     }
 
     goToTermsAndConditionsPage(){

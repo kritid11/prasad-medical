@@ -80,7 +80,8 @@ export class AddItemPage {
 
         this.getPortsAsync().subscribe(masterItems => {
             event.component.items = this.masterItems.filter(masterItem => {
-                return masterItem.item_name.toLowerCase().indexOf(text) !== -1
+                //return masterItem.item_name.toLowerCase().indexOf(text) !== -1
+                return masterItem.item_name.toLowerCase().startsWith(text)
             });
 
             event.component.isSearching = false;
@@ -149,10 +150,10 @@ export class AddItemPage {
   goToReviewOrder(){
     this.storage.get('pxIdArray').then((val) => {
       console.log('storage pxIdArray', val);
-      if(val.length != 0){
-        this.navCtrl.push('ReviewOrderPage');
-      }else{
+      if(val == null || val.length == 0){
         this.presentAlert('Please add atleast one Prescrition to proceed');
+      }else{
+        this.navCtrl.push('ReviewOrderPage');
       }
     });
   }

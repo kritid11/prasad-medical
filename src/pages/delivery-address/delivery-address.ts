@@ -19,21 +19,21 @@ import { InAppBrowser, InAppBrowserOptions } from '@ionic-native/in-app-browser'
 export class DeliveryAddressPage {
 
   options : InAppBrowserOptions = {
-      location : 'yes',//Or 'no'
-      hidden : 'no', //Or  'yes'
-      clearcache : 'yes',
-      clearsessioncache : 'yes',
-      zoom : 'yes',//Android only ,shows browser zoom controls
-      hardwareback : 'yes',
-      mediaPlaybackRequiresUserAction : 'no',
-      shouldPauseOnSuspend : 'no', //Android only
-      closebuttoncaption : 'Close', //iOS only
-      disallowoverscroll : 'no', //iOS only
-      toolbar : 'yes', //iOS only
-      enableViewportScale : 'no', //iOS only
-      allowInlineMediaPlayback : 'no',//iOS only
-      presentationstyle : 'pagesheet',//iOS only
-      fullscreen : 'yes',//Windows only
+    location : 'yes',//Or 'no'
+    hidden : 'no', //Or  'yes'
+    clearcache : 'yes',
+    clearsessioncache : 'yes',
+    zoom : 'yes',//Android only ,shows browser zoom controls
+    hardwareback : 'yes',
+    mediaPlaybackRequiresUserAction : 'no',
+    shouldPauseOnSuspend : 'no', //Android only
+    closebuttoncaption : 'Close', //iOS only
+    disallowoverscroll : 'no', //iOS only
+    toolbar : 'yes', //iOS only
+    enableViewportScale : 'no', //iOS only
+    allowInlineMediaPlayback : 'no',//iOS only
+    presentationstyle : 'pagesheet',//iOS only
+    fullscreen : 'yes',//Windows only
   };
 
   result: any;
@@ -47,352 +47,391 @@ export class DeliveryAddressPage {
   paymentString : string;
 
   constructor(public navCtrl: NavController,
-              public navParams: NavParams,
-              private alertCtrl: AlertController,
-              private storage: Storage,
-              public restProvider: RestProvider,
-              public loadingCtrl: LoadingController,
-              private formBuilder: FormBuilder,
-              private theInAppBrowser: InAppBrowser) {
-                this.surl = this.restProvider.getBaseUrl() + "/PayUMoney/success.php";
-                this.furl = this.restProvider.getBaseUrl() + "/PayUMoney/failure.php";
+    public navParams: NavParams,
+    private alertCtrl: AlertController,
+    private storage: Storage,
+    public restProvider: RestProvider,
+    public loadingCtrl: LoadingController,
+    private formBuilder: FormBuilder,
+    private theInAppBrowser: InAppBrowser) {
+      this.surl = this.restProvider.getBaseUrl() + "/PayUMoney/success.php";
+      this.furl = this.restProvider.getBaseUrl() + "/PayUMoney/failure.php";
 
-                this.addressForm = this.formBuilder.group({
-                  email: [
-                    '',
-                    Validators.compose([ Validators.required, EmailValidator.isValid ])
-                  ],
-                  mobile: [
-                    '',
-                    Validators.compose(
-                              [Validators.maxLength(10),
-                              Validators.minLength(10),
-                              Validators.required]
-                        )
-                  ],
-                  addressType: [
-                    '',
-                    Validators.compose([ Validators.required])
-                  ],
-                  street: [
-                    '',
-                    Validators.compose([ Validators.required])
-                  ],
-                  city: [
-                    '',
-                    Validators.compose([ Validators.required])
-                  ],
-                  pincode: [
-                    '',
-                    Validators.compose(
-                              [Validators.maxLength(6),
-                              Validators.minLength(6),
-                              Validators.required]
-                        )
-                  ],
-                  state: ['Maharashtra'],
-                  country: ['India']
-                });
+      this.addressForm = this.formBuilder.group({
+        email: [
+          '',
+          Validators.compose([ Validators.required, EmailValidator.isValid ])
+        ],
+        mobile: [
+          '',
+          Validators.compose(
+            [Validators.maxLength(10),
+              Validators.minLength(10),
+              Validators.required]
+            )
+          ],
+          addressType: [
+            '',
+            Validators.compose([ Validators.required])
+          ],
+          street: [
+            '',
+            Validators.compose([ Validators.required])
+          ],
+          city: [
+            '',
+            Validators.compose([ Validators.required])
+          ],
+          pincode: [
+            '',
+            Validators.compose(
+              [Validators.maxLength(6),
+                Validators.minLength(6),
+                Validators.required]
+              )
+            ],
+            state: ['Maharashtra'],
+            country: ['India']
+          });
 
-                this.getAddress();
-  }
+          this.getAddress();
+        }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad DeliveryAddressPage');
-  }
+        ionViewDidLoad() {
+          console.log('ionViewDidLoad DeliveryAddressPage');
+        }
 
-  deliverToThisAddress(){
-    this.presentRadioPrompt();
-  }
+        deliverToThisAddress(){
+          //this.presentRadioPrompt();
+          this.storage.get('amountTotal').then((val) => {
+          console.log('storage amountTotal', val);
+          if(this.addressForm.value['pincode'].startsWith("44")){
+            if(val < 1000){
+              this.presentAlertWithTwoBtns('Additional delivery charge of Rs.6 per KM will be collected at the time of delivery as order amount is less than Rs.1000.', 'Continue', 'Cancel');
+            }else{
+              this.presentAlertWithTwoBtns('No Additional delivery charges will be collected as order amount is equal to or greater than Rs.1000.','Ok','Cancel');
+            }
+          }else{
+            this.presentAlertWithTwoBtns('Additional delivery charge of Rs.100 will be collected at the time of delivery.', 'Continue', 'Cancel');
+          }
+        });
 
-  deliverToAnotherAddress(){
-    console.log('deliverToAnotherAddress');
-    this.navCtrl.push('AnotherAddressPage');
-  }
+      }
 
-  callPlaceOrderApi(){
-    this.storage.get('pxIdArray').then((val) => {
-      console.log('storage pxIdArray', val);
+      deliverToAnotherAddress(){
+        console.log('deliverToAnotherAddress');
+        this.navCtrl.push('AnotherAddressPage');
+      }
 
-      this.storage.get('itemsArray').then((val1) => {
-        console.log('storage itemsArray', val1);
+      callPlaceOrderApi(){
+        this.storage.get('pxIdArray').then((val) => {
+          console.log('storage pxIdArray', val);
 
-        this.storage.get('userId').then((val2) => {
-          console.log('storage userId', val2);
+          this.storage.get('itemsArray').then((val1) => {
+            console.log('storage itemsArray', val1);
 
-          //mode is pickup here, address will b blank
+            this.storage.get('userId').then((val2) => {
+              console.log('storage userId', val2);
 
-          this.order ={
-             "user_id" : val2,
-             "prescription_array" : val,
-             "items_array" : val1,
-             "mode" : "d",
-             "address":{
-               "nickname": this.addressForm.value['addressType'],
-               "street": this.addressForm.value['street'],
-               "city": this.addressForm.value['city'],
-               "pincode": this.addressForm.value['pincode']
-             },
-             "email" : this.addressForm.value['email'],
-             "mobile" : this.addressForm.value['mobile'],
-             "txn_id"  : this.txnId
-          };
+              //mode is pickup here, address will b blank
 
+              this.order ={
+                "user_id" : val2,
+                "prescription_array" : val,
+                "items_array" : val1,
+                "mode" : "d",
+                "address":{
+                  "nickname": this.addressForm.value['addressType'],
+                  "street": this.addressForm.value['street'],
+                  "city": this.addressForm.value['city'],
+                  "pincode": this.addressForm.value['pincode']
+                },
+                "email" : this.addressForm.value['email'],
+                "mobile" : this.addressForm.value['mobile'],
+                "txn_id"  : this.txnId
+              };
+
+              let loader = this.loadingCtrl.create({
+                content: "Placing your order..."
+              });
+              loader.present();
+
+              this.restProvider.postRequest('/placeOrder', this.order).then((result) => {
+                loader.dismiss();
+                console.log(result);
+                this.result = result;
+
+                if(this.result.statusKey == 200){
+                  this.storage.remove('pxIdArray');
+                  this.storage.remove('smallImgs');
+                  this.storage.remove('itemsArray');
+                  this.storage.remove('amountTotal');
+                  this.navCtrl.setRoot('ConfirmOrderPage');
+                }else if(this.result.statusKey == 400){
+                  this.presentAlert(this.result.message);
+                }else{
+                  this.presentAlert('Something went wrong.. Please try again.');
+                }
+
+              }, (err) => {
+                loader.dismiss();
+                console.log(err);
+                this.presentAlert('Something went wrong.. Please try again.');
+              });
+            });
+          });
+        });
+      }
+
+      getAddress() {
+        this.storage.get('userId').then((val) => {
+
+          console.log('storage userId', val);
           let loader = this.loadingCtrl.create({
-            content: "Placing your order..."
+            content: "getting Address..."
           });
           loader.present();
 
-         this.restProvider.postRequest('/placeOrder', this.order).then((result) => {
-           loader.dismiss();
-           console.log(result);
-             this.result = result;
-
-             if(this.result.statusKey == 200){
-               this.storage.remove('pxIdArray');
-               this.storage.remove('smallImgs');
-               this.storage.remove('itemsArray');
-               this.storage.remove('amountTotal');
-               this.navCtrl.setRoot('ConfirmOrderPage');
-             }else if(this.result.statusKey == 400){
-               this.presentAlert(this.result.message);
-             }else{
-               this.presentAlert('Something went wrong.. Please try again.');
-             }
-
-         }, (err) => {
-           loader.dismiss();
-           console.log(err);
-           this.presentAlert('Something went wrong.. Please try again.');
-         });
-       });
-    });
-  });
-}
-
-getAddress() {
-    this.storage.get('userId').then((val) => {
-
-      console.log('storage userId', val);
-      let loader = this.loadingCtrl.create({
-        content: "getting Address..."
-      });
-      loader.present();
-
-      this.restProvider.getRequest('/getAddress', '/' + val)
-      .then((result) => {
-        loader.dismiss();
-        console.log(result);
-        this.result = result;
-        if(this.result.statusKey == 200){
-          this.result = result;
-          this.addressForm.controls['email'].setValue(this.result.data.email);
-          this.addressForm.controls['mobile'].setValue(this.result.data.mobile);
-          if(this.result.data.address != null){
-            this.addressForm.controls['addressType'].setValue(this.result.data.address.nickname);
-            this.addressForm.controls['street'].setValue(this.result.data.address.street);
-            this.addressForm.controls['city'].setValue(this.result.data.address.city);
-            this.addressForm.controls['state'].setValue(this.result.data.address.state);
-            this.addressForm.controls['pincode'].setValue(this.result.data.address.pincode);
-          }
-        }else if(this.result.statusKey == 400){
-            this.presentAlert(this.result.message);
-        }else{
-            this.presentAlert('Something went wrong.. Please try again.');
-        }
-    },(err) => {
-       loader.dismiss();
-       console.log(err);
-       this.presentAlert('Something went wrong.. Please try again.');
-     });
-  });
-  }
-
-  presentAlert(msg) {
-    let alert = this.alertCtrl.create({
-      title: 'Prasad Medical',
-      message: msg,
-      buttons: [
-        {
-          text: 'Ok',
-          role: 'cancel',
-          handler: () => {
-            //console.log('Cancel clicked');
-          }
-        }
-      ]
-    });
-    alert.present();
-  }
-
-  payWithPayMoney(){
-
-    this.storage.get('amountTotal').then((val1) => {
-      console.log('storage amountTotal', val1);
-
-      this.storage.get('userName').then((val2) => {
-        console.log('storage userName', val2);
-
-        this.storage.get('email').then((val3) => {
-          console.log('storage email', val3);
-
-          this.storage.get('mobile').then((val4) => {
-            console.log('storage mobile', val4);
-
-
-            if(val4 == undefined || val4 == ''){
-              this.presentPrompt();
-              return;
+          this.restProvider.getRequest('/getAddress', '/' + val)
+          .then((result) => {
+            loader.dismiss();
+            console.log(result);
+            this.result = result;
+            if(this.result.statusKey == 200){
+              this.result = result;
+              this.addressForm.controls['email'].setValue(this.result.data.email);
+              this.addressForm.controls['mobile'].setValue(this.result.data.mobile);
+              if(this.result.data.address != null){
+                this.addressForm.controls['addressType'].setValue(this.result.data.address.nickname);
+                this.addressForm.controls['street'].setValue(this.result.data.address.street);
+                this.addressForm.controls['city'].setValue(this.result.data.address.city);
+                this.addressForm.controls['state'].setValue(this.result.data.address.state);
+                this.addressForm.controls['pincode'].setValue(this.result.data.address.pincode);
+              }
+            }else if(this.result.statusKey == 400){
+              this.presentAlert(this.result.message);
+            }else{
+              this.presentAlert('Something went wrong.. Please try again.');
             }
-
-            var options = {
-              location: 'yes',
-              clearcache: 'yes',
-              toolbar: 'no',
-              closebuttoncaption:'back'
-            };
-            var close;
-            var closeLoop;
-            var amt = val1;
-            var name =  val2;
-            var email = val3;
-            var mobile = val4;
-            this.txnId = this.restProvider.getUniqueTxnId();
-            console.log('generateTxnId:',this.txnId);
-            // var amt = 1;
-            // var name =  "Kriti";
-            // var email = "kritid11@gmail.com";
-            // var mobile = "8600273356";
-            var bookingId = this.txnId;
-            var productinfo = "Order for "+ this.txnId;
-            var string = this.restProvider.getKey() + '|' + bookingId + '|' + amt+ '|' + productinfo + '|' + name + '|' + email + '|||||||||||' + this.restProvider.getSalt();
-            //var encrypttext = sha512(string);
-            let shaObj = new jsSHA("SHA-512", "TEXT");
-            shaObj.update(string);
-            let encrypttext = shaObj.getHash("HEX");
-            console.log(encrypttext);
-
-            this.paymentString = `
-            <html>
-              <body>
-                <form action="${this.restProvider.getProductionUrl()}" method="post" id="payu_form">
-                  <input type="hidden" name="firstname" value="${name}"/>
-                  <input type="hidden" name="email" value="${email}"/>
-                  <input type="hidden" name="phone" value="${mobile}"/>
-                  <input type="hidden" name="surl" value="${this.surl}"/>
-                  <input type="hidden" name="furl" value="${this.furl}"/>
-                  <input type="hidden" name="key" value="${this.restProvider.getKey()}"/>
-                  <input type="hidden" name="hash" value="${encrypttext}"/>
-                  <input type="hidden" name="txnid" value="${this.txnId}"/>
-                  <input type="hidden" name="productinfo" value="${productinfo}"/>
-                  <input type="hidden" name="amount" value="${amt}"/>
-                  <input type="hidden" name="service_provider" value="${this.restProvider.getServiceProvider()}"/>
-                  <button type="submit" value="submit" #submitBtn></button>
-                </form>
-                <script type="text/javascript">document.getElementById("payu_form").submit();</script>
-              </body>
-            </html>`;
-
-            console.log(this.paymentString);
-            this.paymentString = 'data:text/html;base64,' + btoa(this.paymentString);
-
-            const browser = this.openWithInAppBrowser(this.paymentString);
-            browser.on('loadstart').subscribe(event => {});
-
-            browser.on('loadstop').subscribe(event => {
-
-              if(event.url == this.surl) {
-                browser.close();
-                this.callPlaceOrderApi();
-              }
-              if(event.url == this.furl) {
-                browser.close();
-                this.presentAlert('Something went wrong.. Please try again.');
-              }
-            });
-
-            browser.on('loaderror').subscribe(event => {});
-            browser.on('exit').subscribe(event => {});
-
+          },(err) => {
+            loader.dismiss();
+            console.log(err);
+            this.presentAlert('Something went wrong.. Please try again.');
           });
         });
-      });
-    });
-  }
+      }
 
-  presentPrompt() {
-    let alert = this.alertCtrl.create({
-      title: 'Prasad Medical',
-      inputs: [
-        {
-          name: 'mobileNumber',
-          placeholder: 'please enter Mobile Number'
-        }
-      ],
-      buttons: [
-        {
-          text: 'Save',
-          handler: data => {
-
-            this.storage.set('mobile', data.mobileNumber);
-            this.payWithPayMoney();
-          }
-        }
-      ]
-    });
-    alert.present();
-  }
-
-  openWithInAppBrowser(url : string){
-      let target = "_blank";
-      return this.theInAppBrowser.create(url,target,this.options);
-  }
-
-  presentRadioPrompt() {
-    let prompt = this.alertCtrl.create({
-      title: 'Prasad Medical',
-      message: 'Please select Payment mode ',
-      inputs : [
-        {
-          type:'radio',
-          label:'NetBanking/Credit Cards/Debit Cards',
-          value:'PG'
-        },
-        {
-          type:'radio',
-          label:'Cash on Pickup/Delivery',
-          value:'COD'
-        }],
-        buttons : [
-          {
-            text: "Cancel",
-            handler: data => {
-              console.log("cancel clicked");
-            }
-          },
-          {
-            text: "Ok",
-            handler: data => {
-              console.log("ok clicked data: ",data);
-              if(data == 'PG'){
-                this.storage.get('amountTotal').then((val1) => {
-                  console.log('storage amountTotal', val1);
-                  if(val1 == undefined || val1 == 0){
-                    this.txnId = null;
-                    this.callPlaceOrderApi();
-                  }else{
-                    this.payWithPayMoney();
-                  }
-                });
-              }else{
-                this.txnId = null;
-                this.callPlaceOrderApi();
+      presentAlert(msg) {
+        let alert = this.alertCtrl.create({
+          title: 'Prasad Medical',
+          message: msg,
+          buttons: [
+            {
+              text: 'Ok',
+              role: 'cancel',
+              handler: () => {
+                //console.log('Cancel clicked');
               }
             }
-          }]
+          ]
         });
-        prompt.present();
+        alert.present();
       }
 
 
-}
+
+      payWithPayMoney(){
+
+        this.storage.get('amountTotal').then((val1) => {
+          console.log('storage amountTotal', val1);
+
+          this.storage.get('userName').then((val2) => {
+            console.log('storage userName', val2);
+
+            this.storage.get('email').then((val3) => {
+              console.log('storage email', val3);
+
+              this.storage.get('mobile').then((val4) => {
+                console.log('storage mobile', val4);
+
+
+                if(val4 == undefined || val4 == ''){
+                  this.presentPrompt();
+                  return;
+                }
+
+                var options = {
+                  location: 'yes',
+                  clearcache: 'yes',
+                  toolbar: 'no',
+                  closebuttoncaption:'back'
+                };
+                var close;
+                var closeLoop;
+                var amt = val1;
+                var name =  val2;
+                var email = val3;
+                var mobile = val4;
+                this.txnId = this.restProvider.getUniqueTxnId();
+                console.log('generateTxnId:',this.txnId);
+                // var amt = 1;
+                // var name =  "Kriti";
+                // var email = "kritid11@gmail.com";
+                // var mobile = "8600273356";
+                var bookingId = this.txnId;
+                var productinfo = "Order for "+ this.txnId;
+                var string = this.restProvider.getKey() + '|' + bookingId + '|' + amt+ '|' + productinfo + '|' + name + '|' + email + '|||||||||||' + this.restProvider.getSalt();
+                //var encrypttext = sha512(string);
+                let shaObj = new jsSHA("SHA-512", "TEXT");
+                shaObj.update(string);
+                let encrypttext = shaObj.getHash("HEX");
+                console.log(encrypttext);
+
+                this.paymentString = `
+                <html>
+                <body>
+                <form action="${this.restProvider.getProductionUrl()}" method="post" id="payu_form">
+                <input type="hidden" name="firstname" value="${name}"/>
+                <input type="hidden" name="email" value="${email}"/>
+                <input type="hidden" name="phone" value="${mobile}"/>
+                <input type="hidden" name="surl" value="${this.surl}"/>
+                <input type="hidden" name="furl" value="${this.furl}"/>
+                <input type="hidden" name="key" value="${this.restProvider.getKey()}"/>
+                <input type="hidden" name="hash" value="${encrypttext}"/>
+                <input type="hidden" name="txnid" value="${this.txnId}"/>
+                <input type="hidden" name="productinfo" value="${productinfo}"/>
+                <input type="hidden" name="amount" value="${amt}"/>
+                <input type="hidden" name="service_provider" value="${this.restProvider.getServiceProvider()}"/>
+                <button type="submit" value="submit" #submitBtn></button>
+                </form>
+                <script type="text/javascript">document.getElementById("payu_form").submit();</script>
+                </body>
+                </html>`;
+
+                console.log(this.paymentString);
+                this.paymentString = 'data:text/html;base64,' + btoa(this.paymentString);
+
+                const browser = this.openWithInAppBrowser(this.paymentString);
+                browser.on('loadstart').subscribe(event => {});
+
+                browser.on('loadstop').subscribe(event => {
+
+                  if(event.url == this.surl) {
+                    browser.close();
+                    this.callPlaceOrderApi();
+                  }
+                  if(event.url == this.furl) {
+                    browser.close();
+                    this.presentAlert('Something went wrong.. Please try again.');
+                  }
+                });
+
+                browser.on('loaderror').subscribe(event => {});
+                browser.on('exit').subscribe(event => {});
+
+              });
+            });
+          });
+        });
+      }
+
+      presentPrompt() {
+        let alert = this.alertCtrl.create({
+          title: 'Prasad Medical',
+          inputs: [
+            {
+              name: 'mobileNumber',
+              placeholder: 'please enter Mobile Number'
+            }
+          ],
+          buttons: [
+            {
+              text: 'Save',
+              handler: data => {
+
+                this.storage.set('mobile', data.mobileNumber);
+                this.payWithPayMoney();
+              }
+            }
+          ]
+        });
+        alert.present();
+      }
+
+      openWithInAppBrowser(url : string){
+        let target = "_blank";
+        return this.theInAppBrowser.create(url,target,this.options);
+      }
+
+      presentRadioPrompt() {
+        let prompt = this.alertCtrl.create({
+          title: 'Prasad Medical',
+          message: 'Please select Payment mode ',
+          inputs : [
+            {
+              type:'radio',
+              label:'NetBanking/Credit Cards/Debit Cards',
+              value:'PG'
+            },
+            {
+              type:'radio',
+              label:'Cash on Pickup/Delivery',
+              value:'COD'
+            }],
+            buttons : [
+              {
+                text: "Cancel",
+                handler: data => {
+                  console.log("cancel clicked");
+                }
+              },
+              {
+                text: "Ok",
+                handler: data => {
+                  console.log("ok clicked data: ",data);
+                  if(data == 'PG'){
+                    this.storage.get('amountTotal').then((val1) => {
+                      console.log('storage amountTotal', val1);
+                      if(val1 == undefined || val1 == 0){
+                        this.txnId = null;
+                        this.callPlaceOrderApi();
+                      }else{
+                        this.payWithPayMoney();
+                      }
+                    });
+                  }else{
+                    this.txnId = null;
+                    this.callPlaceOrderApi();
+                  }
+                }
+              }]
+            });
+            prompt.present();
+          }
+
+
+          presentAlertWithTwoBtns(msg, btn1, btn2) {
+            let alert = this.alertCtrl.create({
+              title: 'Prasad Medical',
+              message: msg,
+              buttons: [
+                {
+                  text: btn1,
+                  role: 'cancel',
+                  handler: () => {
+                    //console.log('Cancel clicked');
+                    this.presentRadioPrompt();
+                  }
+                },
+                {
+                  text: btn2,
+                  role: 'cancel',
+                  handler: () => {
+                    //console.log('Cancel clicked');
+                  }
+                }
+              ]
+            });
+            alert.present();
+          }
+        }

@@ -101,7 +101,19 @@ export class AnotherAddressPage {
   }
 
   deliverToThisAddress(){
-    this.presentRadioPrompt();
+    //this.presentRadioPrompt();
+    this.storage.get('amountTotal').then((val) => {
+      console.log('storage amountTotal', val);
+      if(this.addressForm.value['pincode'].startsWith("44")){
+        if(val < 1000){
+          this.presentAlertWithTwoBtns('Additional delivery charge of Rs.6 per KM will be collected at the time of delivery as order amount is less than Rs.1000.', 'Continue', 'Cancel');
+        }else{
+          this.presentAlertWithTwoBtns('No Additional delivery charges will be collected as order amount is equal to or greater than Rs.1000.','Ok','Cancel');
+        }
+      }else{
+        this.presentAlertWithTwoBtns('Additional delivery charge of Rs.100 will be collected at the time of delivery.', 'Continue', 'Cancel');
+      }
+    });
   }
 
   callPlaceOrderApi(){
@@ -382,9 +394,35 @@ getAddress() {
                 this.callPlaceOrderApi();
               }
             }
-          }]
-        });
-        prompt.present();
-      }
+        }]
+      });
+      prompt.present();
+    }
+
+    presentAlertWithTwoBtns(msg, btn1, btn2) {
+      let alert = this.alertCtrl.create({
+        title: 'Prasad Medical',
+        message: msg,
+        buttons: [
+          {
+            text: btn1,
+            role: 'cancel',
+            handler: () => {
+              //console.log('Cancel clicked');
+              this.presentRadioPrompt();
+            }
+          },
+          {
+            text: btn2,
+            role: 'cancel',
+            handler: () => {
+              //console.log('Cancel clicked');
+            }
+          }
+        ]
+      });
+      alert.present();
+  }
+
 
 }
