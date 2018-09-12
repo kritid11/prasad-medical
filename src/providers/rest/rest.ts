@@ -11,8 +11,8 @@ import { HttpParams } from '@angular/common/http';
 */
 @Injectable()
 export class RestProvider {
-  //baseURL = 'https://jsonplaceholder.typicode.com';
-  baseURL = 'https://da6e0ee8.ngrok.io/prasad-medical/public';
+  //baseURL = 'https://da6e0ee8.ngrok.io/prasad-medical/public';
+  baseURL = 'http://prasadmedical.com'
   key : string = "O1TTBiVD";//"gtKFFx";
   salt : string = "qp1B4zZt2W";//"eCwWELxi";
   sandboxUrl: string = 'https://sandboxsecure.payu.in/_payment';

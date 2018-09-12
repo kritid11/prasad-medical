@@ -106,7 +106,7 @@ export class MyAccountPage {
           }
 
           let loader = this.loadingCtrl.create({
-            content: "Updating details..."
+            content: "Updating Details..."
           });
           loader.present();
 
@@ -139,7 +139,7 @@ export class MyAccountPage {
 
         console.log('storage userId', val);
         let loader = this.loadingCtrl.create({
-          content: "getting Acccount Details.."
+          content: "Getting Acccount Details.."
         });
         loader.present();
 
@@ -152,11 +152,13 @@ export class MyAccountPage {
             this.result = result;
             this.accountForm.controls['firstName'].setValue(this.result.data.first_name);
             this.accountForm.controls['lastName'].setValue(this.result.data.last_name);
-            this.accountForm.controls['addressType'].setValue(this.result.data.address.nickname);
-            this.accountForm.controls['street'].setValue(this.result.data.address.street);
-            this.accountForm.controls['city'].setValue(this.result.data.address.city);
-            this.accountForm.controls['state'].setValue(this.result.data.address.state);
-            this.accountForm.controls['pincode'].setValue(this.result.data.address.pincode);
+            if(this.result.data.address != null){
+              this.accountForm.controls['addressType'].setValue(this.result.data.address.nickname);
+              this.accountForm.controls['street'].setValue(this.result.data.address.street);
+              this.accountForm.controls['city'].setValue(this.result.data.address.city);
+              this.accountForm.controls['state'].setValue(this.result.data.address.state);
+              this.accountForm.controls['pincode'].setValue(this.result.data.address.pincode);
+            }
             this.accountForm.controls['email'].setValue(this.result.data.email);
             this.accountForm.controls['mobile'].setValue(this.result.data.mobile);
 

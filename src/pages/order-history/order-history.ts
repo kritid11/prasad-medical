@@ -106,7 +106,7 @@ export class OrderHistoryPage {
 
           console.log('storage userId', val);
           let loader = this.loadingCtrl.create({
-            content: "getting Order History..."
+            content: "Getting Order History..."
           });
           loader.present();
 

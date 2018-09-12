@@ -55,7 +55,7 @@ export class OrderDetailsPage {
       console.log('storage order_id', val);
 
       let loader = this.loadingCtrl.create({
-        content: "cancelling the Order..."
+        content: "Cancelling the Order..."
       });
       loader.present();
 
@@ -97,7 +97,7 @@ export class OrderDetailsPage {
         console.log('storage order_id', val);
 
         let loader = this.loadingCtrl.create({
-          content: "getting Order Details..."
+          content: "Getting Order Details..."
         });
         loader.present();
 
